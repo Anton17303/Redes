@@ -1,0 +1,10 @@
+[
+  {"id": "eco-001", "brand": "Toyota", "model": "Yaris", "category": "economico", "seats": 4, "transmission": "manual", "price_per_day": 25.0, "available": true},
+  {"id": "eco-002", "brand": "Chevrolet", "model": "Spark", "category": "economico", "seats": 4, "transmission": "manual", "price_per_day": 22.0, "available": true},
+  {"id": "sed-001", "brand": "Toyota", "model": "Corolla", "category": "sedan", "seats": 5, "transmission": "automatico", "price_per_day": 38.0, "available": true},
+  {"id": "sed-002", "brand": "Honda", "model": "Civic", "category": "sedan", "seats": 5, "transmission": "automatico", "price_per_day": 40.0, "available": false},
+  {"id": "suv-001", "brand": "Hyundai", "model": "Tucson", "category": "suv", "seats": 5, "transmission": "automatico", "price_per_day": 55.0, "available": true},
+  {"id": "suv-002", "brand": "Kia", "model": "Sportage", "category": "suv", "seats": 5, "transmission": "automatico", "price_per_day": 58.0, "available": true},
+  {"id": "van-001", "brand": "Toyota", "model": "Hiace", "category": "van", "seats": 12, "transmission": "manual", "price_per_day": 90.0, "available": true},
+  {"id": "lux-001", "brand": "BMW", "model": "Serie 3", "category": "lujo", "seats": 5, "transmission": "automatico", "price_per_day": 120.0, "available": true}
+]
