@@ -1,6 +1,6 @@
 # MCP Chatbot — CC3067 Redes, Proyecto 1
 
-Console chatbot (Host) that talks to an LLM through the Anthropic API
+Console chatbot (Host) that talks to an LLM through the Gemini API
 and coordinates several **Model Context Protocol (MCP)** servers
 (local and remote). The MCP protocol — JSON-RPC 2.0 messages, the
 `initialize` handshake, `tools/list`, `tools/call` — is implemented
@@ -11,7 +11,8 @@ FastMCP), as required by the assignment.
 
 **General chatbot**
 - [x] Connects to an LLM at the API level (raw HTTP requests to
-      Anthropic's `POST /v1/messages`, see `host/llm_client.py`).
+      Gemini's `POST /v1beta/models/{model}:generateContent`, see
+      `host/llm_client.py`).
 - [x] Keeps conversation context across turns (`host/session.py`).
 - [x] Logs every JSON-RPC request/response exchanged with every MCP
       server, both to stdout and to `mcp_interactions.log.jsonl`
@@ -45,7 +46,7 @@ mcp-chatbot-project/
 ├── main.py                     # Entry point (console host)
 ├── host/
 │   ├── chatbot.py              # LLM <-> tools orchestration loop
-│   ├── llm_client.py           # Raw Anthropic Messages API client
+│   ├── llm_client.py           # Raw Gemini generateContent API client
 │   ├── mcp_manager.py          # Manages multiple MCP clients/servers
 │   ├── session.py              # Conversation context
 │   └── logger.py               # MCP interaction logger
@@ -77,7 +78,7 @@ mcp-chatbot-project/
 - Node.js 18+ and `npx` (to run the official Filesystem MCP server)
 - `uv`/`uvx` (to run the official Git MCP server) — install with
   `pip install uv` or see https://docs.astral.sh/uv/getting-started/installation/
-- An Anthropic API key (the free $5 credit is enough for this project)
+- A Gemini API key (free tier, get one at https://aistudio.google.com/apikey)
 
 ## Installation
 
@@ -87,7 +88,7 @@ cd mcp-chatbot-project
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-# edit .env and set ANTHROPIC_API_KEY
+# edit .env and set GEMINI_API_KEY
 ```
 
 ## Usage

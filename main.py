@@ -8,8 +8,8 @@ Uso:
     python main.py
 
 Configuración (ver .env.example):
-    ANTHROPIC_API_KEY       Requerida.
-    ANTHROPIC_MODEL         Opcional (default: claude-sonnet-4-6)
+    GEMINI_API_KEY          Requerida. Se obtiene gratis en https://aistudio.google.com/apikey
+    GEMINI_MODEL            Opcional (default: gemini-2.5-flash)
     WORKSPACE_DIR           Carpeta que expone el Filesystem MCP server (default: ./workspace)
     CAR_RENTAL_REMOTE_URL   Si se define, usa el servidor de renta de autos REMOTO
                             (https://...) en vez del local (stdio).
@@ -73,7 +73,7 @@ def main():
     mcp_manager = build_mcp_manager(logger)
     mcp_manager.connect_all()
 
-    llm_client = LLMClient(model=os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-6"))
+    llm_client = LLMClient(model=os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"))
     session = Session()
     chatbot = Chatbot(llm_client, mcp_manager, session)
 
