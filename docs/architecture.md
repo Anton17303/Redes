@@ -5,7 +5,7 @@
 ```
 ┌─────────────────────────────── Anfitrión (host/) ───────────────────────────────┐
 │                                                                                    │
-│   Session (contexto)   MCPLogger (log JSON-RPC)         LLMClient (API Gemini)    │
+│   Session (contexto)   MCPLogger (log JSON-RPC)          LLMClient (API Groq)     │
 │                                                                                    │
 │   MCPManager                                                                      │
 │     ├── MCPClient "filesystem" ──stdio──> npx @modelcontextprotocol/server-fs     │
@@ -18,11 +18,12 @@
 - Cada **Cliente** (`mcp_protocol/client.py`, instanciado una vez por
   servidor) mantiene su propia conexión 1:1 con un **Servidor**.
 - Los tres servidores exponen "tools" que, en conjunto, se le
-  presentan al LLM como `functionDeclarations` dentro del parámetro
-  `tools` de la API de Gemini. Cuando el LLM decide usar una (una
-  `functionCall` dentro de `candidates[0].content.parts`), el host la
+  presentan al LLM como el parámetro `tools` de la API de Groq
+  (formato compatible con OpenAI Chat Completions: `{"type":
+  "function", "function": {...}}`). Cuando el LLM decide usar una (un
+  `tool_call` dentro de `choices[0].message.tool_calls`), el host la
   ejecuta contra el servidor correcto y le devuelve el resultado como
-  una `functionResponse` en el siguiente turno.
+  un mensaje `role: "tool"` referenciando el `tool_call_id`.
 
 ## 2. Especificación del servidor `car_rental`
 

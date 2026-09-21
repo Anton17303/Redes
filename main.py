@@ -8,11 +8,12 @@ Uso:
     python main.py
 
 Configuración (ver .env.example):
-    GEMINI_API_KEY          Requerida. Se obtiene gratis en https://aistudio.google.com/apikey
-    GEMINI_MODEL            Opcional (default: gemini-2.5-flash)
-    WORKSPACE_DIR           Carpeta que expone el Filesystem MCP server (default: ./workspace)
-    CAR_RENTAL_REMOTE_URL   Si se define, usa el servidor de renta de autos REMOTO
-                            (https://...) en vez del local (stdio).
+    GROQ_API_KEY             Requerida. Se obtiene gratis (sin tarjeta) en
+                             https://console.groq.com/keys
+    GROQ_MODEL               Opcional (default: openai/gpt-oss-120b)
+    WORKSPACE_DIR            Carpeta que expone el Filesystem MCP server (default: ./workspace)
+    CAR_RENTAL_REMOTE_URL    Si se define, usa el servidor de renta de autos REMOTO
+                             (https://...) en vez del local (stdio).
 """
 
 from __future__ import annotations
@@ -22,7 +23,7 @@ import sys
 
 from dotenv import load_dotenv
 
-from host.chatbot import Chatbot
+from host.chatbot import SYSTEM_PROMPT, Chatbot
 from host.llm_client import LLMClient
 from host.logger import MCPLogger
 from host.mcp_manager import MCPManager
@@ -73,8 +74,8 @@ def main():
     mcp_manager = build_mcp_manager(logger)
     mcp_manager.connect_all()
 
-    llm_client = LLMClient(model=os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"))
-    session = Session()
+    llm_client = LLMClient(model=os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b"))
+    session = Session(system_prompt=SYSTEM_PROMPT)
     chatbot = Chatbot(llm_client, mcp_manager, session)
 
     print("\n=========================================")

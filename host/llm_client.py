@@ -3,118 +3,159 @@ llm_client.py
 
 Conexión con el LLM directamente a nivel de su API HTTP (funcionalidad 1
 del proyecto: "Comprender cómo interactuar con un LLM a nivel de la
-API"). Se usa la API de Gemini (Google AI Studio), endpoint
-`POST /v1beta/models/{model}:generateContent`, con `requests` puro y
-sin usar el SDK oficial `google-genai`, para dejar explícito el
-formato de la petición/respuesta.
+API"). Se usa la API de Groq (https://groq.com), que es gratuita (sin
+tarjeta de crédito, ~14,400 requests/día en el tier gratuito) y expone
+un endpoint compatible con el formato de "Chat Completions" de OpenAI,
+incluyendo function/tool calling. Se usa `requests` puro, sin el SDK
+oficial `groq`, para dejar explícito el formato de la petición/respuesta.
 
 Documentación:
-    https://ai.google.dev/gemini-api/docs/text-generation
-    https://ai.google.dev/gemini-api/docs/function-calling
+    https://console.groq.com/docs/api-reference#chat-create
+    https://console.groq.com/docs/tool-use
 """
 
 from __future__ import annotations
 
 import os
+import re
+import time
 from typing import Any, List, Optional
 
 import requests
 
-GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
-DEFAULT_MODEL = "gemini-2.5-flash"
-
-# Claves del JSON Schema (como las expone `inputSchema` de un servidor MCP)
-# que la API de Gemini no acepta en `functionDeclarations.parameters` y que
-# por lo tanto hay que remover antes de enviarlas.
-_UNSUPPORTED_SCHEMA_KEYS = {
-    "$schema",
-    "additionalProperties",
-    "examples",
-    "title",
-    "$id",
-    "$ref",
-    "$defs",
-}
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+DEFAULT_MODEL = "openai/gpt-oss-120b"
+MAX_RATE_LIMIT_RETRIES = 5
 
 
 class LLMClient:
     def __init__(self, api_key: Optional[str] = None, model: str = DEFAULT_MODEL):
-        self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
+        self.api_key = api_key or os.environ.get("GROQ_API_KEY")
         if not self.api_key:
             raise RuntimeError(
-                "No se encontró GEMINI_API_KEY. Defínela como variable de entorno "
-                "o en un archivo .env (ver .env.example)."
+                "No se encontró GROQ_API_KEY. Defínela como variable de entorno "
+                "o en un archivo .env (ver .env.example). Se obtiene gratis en "
+                "https://console.groq.com/keys"
             )
         self.model = model
 
     def send(
         self,
-        contents: List[dict],
+        messages: List[dict],
         tools: Optional[List[dict]] = None,
-        system: Optional[str] = None,
-        max_output_tokens: int = 2048,
+        max_tokens: int = 2048,
     ) -> dict:
-        """Hace un request crudo a POST /v1beta/models/{model}:generateContent
-        y retorna el JSON de respuesta."""
-        url = f"{GEMINI_API_BASE}/{self.model}:generateContent"
+        """Hace un request crudo a POST /openai/v1/chat/completions (formato
+        Chat Completions de OpenAI, servido por Groq) y retorna el JSON de
+        respuesta."""
         headers = {
-            "x-goog-api-key": self.api_key,
-            "content-type": "application/json",
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
         }
         body: dict[str, Any] = {
-            "contents": contents,
-            "generationConfig": {"maxOutputTokens": max_output_tokens},
+            "model": self.model,
+            "messages": messages,
+            "max_completion_tokens": max_tokens,
         }
-        if system:
-            body["systemInstruction"] = {"parts": [{"text": system}]}
         if tools:
             body["tools"] = tools
+            body["tool_choice"] = "auto"
 
-        resp = requests.post(url, headers=headers, json=body, timeout=60)
-        if resp.status_code != 200:
-            raise RuntimeError(f"Gemini API error {resp.status_code}: {resp.text}")
-        return resp.json()
+        for attempt in range(MAX_RATE_LIMIT_RETRIES + 1):
+            resp = requests.post(GROQ_API_URL, headers=headers, json=body, timeout=60)
+            if resp.status_code == 200:
+                return resp.json()
+
+            if resp.status_code == 429 and attempt < MAX_RATE_LIMIT_RETRIES:
+                wait_seconds = self._parse_retry_after(resp)
+                print(
+                    f"  [rate_limit] Groq pidió esperar ~{wait_seconds:.1f}s "
+                    f"(intento {attempt + 1}/{MAX_RATE_LIMIT_RETRIES})..."
+                )
+                time.sleep(wait_seconds)
+                continue
+
+            raise RuntimeError(f"Groq API error {resp.status_code}: {resp.text}")
+
+        raise RuntimeError("Groq API: se agotaron los reintentos por rate limit (429).")
+
+    @staticmethod
+    def _parse_retry_after(resp: requests.Response) -> float:
+        """Extrae cuántos segundos hay que esperar antes de reintentar. Groq
+        manda el header estándar `Retry-After`, y además lo repite en el
+        mensaje de error (ej. "Please try again in 3.585s")."""
+        header_value = resp.headers.get("Retry-After")
+        if header_value:
+            try:
+                return max(float(header_value), 0.5)
+            except ValueError:
+                pass
+
+        match = re.search(r"try again in ([\d.]+)s", resp.text)
+        if match:
+            return max(float(match.group(1)), 0.5) + 0.5  # pequeño margen
+
+        return 5.0  # fallback razonable si no se pudo parsear
 
 
-def _sanitize_schema(schema: Any) -> Any:
-    """Limpia un JSON Schema (tal como lo expone `tools/list` de un servidor
-    MCP) para que sea aceptado como `parameters` de una `functionDeclaration`
-    de Gemini: remueve palabras clave no soportadas y sanea recursivamente
-    `properties` / `items`."""
+def _make_strict_nullable(schema: Any) -> Any:
+    """El modelo (openai/gpt-oss-120b vía Groq) usa el modo "strict" de
+    tool calling: en vez de omitir parámetros opcionales que decide no
+    usar, los manda explícitamente como `null`. Para que eso sea válido,
+    el JSON Schema tiene que declarar TODAS las propiedades en
+    `required` (convención de OpenAI Structured Outputs en modo strict)
+    y, para las que son opcionales de verdad, permitir `null` en su
+    `type` (y agregarlo al `enum`, si tiene uno). Sin este ajuste, Groq
+    rechaza el tool call con "value must be one of [...]" o "expected
+    string, but got null"."""
     if not isinstance(schema, dict):
         return schema
 
-    cleaned = {k: v for k, v in schema.items() if k not in _UNSUPPORTED_SCHEMA_KEYS}
+    schema = dict(schema)
+    original_required = set(schema.get("required", []))
 
-    if "properties" in cleaned and isinstance(cleaned["properties"], dict):
-        cleaned["properties"] = {
-            key: _sanitize_schema(value) for key, value in cleaned["properties"].items()
-        }
-    if "items" in cleaned:
-        cleaned["items"] = _sanitize_schema(cleaned["items"])
+    if "properties" in schema and isinstance(schema["properties"], dict):
+        new_props = {}
+        for key, subschema in schema["properties"].items():
+            subschema = _make_strict_nullable(subschema)
+            if key not in original_required and isinstance(subschema, dict):
+                subschema = dict(subschema)
+                if "type" in subschema:
+                    t = subschema["type"]
+                    if isinstance(t, str) and t != "null":
+                        subschema["type"] = [t, "null"]
+                    elif isinstance(t, list) and "null" not in t:
+                        subschema["type"] = [*t, "null"]
+                if "enum" in subschema and None not in subschema["enum"]:
+                    subschema["enum"] = [*subschema["enum"], None]
+            new_props[key] = subschema
+        schema["properties"] = new_props
+        # Modo strict: TODAS las propiedades van en "required"; lo que
+        # antes era "opcional" ahora se expresa solo por aceptar null.
+        schema["required"] = list(schema["properties"].keys())
 
-    # Gemini requiere que todo objeto tenga "type"; si el schema MCP lo omite
-    # (algunos servidores lo hacen para objetos vacíos), se asume "object".
-    cleaned.setdefault("type", "object")
-    return cleaned
+    return schema
 
 
-def mcp_tools_to_gemini_format(mcp_tools: List[dict]) -> List[dict]:
+def mcp_tools_to_openai_format(mcp_tools: List[dict]) -> List[dict]:
     """
     Convierte la lista de herramientas expuestas por servidores MCP
-    (formato tools/list: name, description, inputSchema) al formato que
-    espera la API de Gemini para "tools": una lista con un único elemento
-    `{"functionDeclarations": [...]}`, donde cada declaración usa
-    `parameters` (no `inputSchema`/`input_schema`) para el JSON Schema.
+    (formato tools/list: name, description, inputSchema) al formato
+    "tools" de la API de Chat Completions (OpenAI-compatible, usado por
+    Groq): una lista de `{"type": "function", "function": {...}}`, donde
+    cada una usa `parameters` (no `inputSchema`) para el JSON Schema.
     """
-    declarations = []
+    out = []
     for t in mcp_tools:
         schema = t.get("inputSchema") or {"type": "object", "properties": {}}
-        declarations.append(
+        out.append(
             {
-                "name": t["name"],
-                "description": t.get("description", ""),
-                "parameters": _sanitize_schema(schema),
+                "type": "function",
+                "function": {
+                    "name": t["name"],
+                    "description": t.get("description", ""),
+                    "parameters": _make_strict_nullable(schema),
+                },
             }
         )
-    return [{"functionDeclarations": declarations}]
+    return out

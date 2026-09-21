@@ -10,20 +10,22 @@ El Anfitrión (host). Orquesta:
 
 Ciclo por cada turno del usuario:
     - Se agrega el mensaje del usuario a la sesión.
-    - Se llama al LLM (Gemini) con el historial completo + la lista de
-      tools disponibles (agregadas de todos los servidores MCP), en el
-      formato `functionDeclarations` que espera la API de Gemini.
-    - Si el LLM responde con una o más `functionCall` dentro de
-      `candidates[0].content.parts`, el host ejecuta esas herramientas
-      contra el servidor MCP correspondiente y le devuelve el resultado
-      al LLM como partes `functionResponse` en un nuevo turno "user"
-      (protocolo de "function calling" de la API de Gemini), repitiendo
-      hasta que el LLM entregue una respuesta final en texto.
+    - Se llama al LLM (Groq, API compatible con OpenAI Chat Completions)
+      con el historial completo + la lista de tools disponibles
+      (agregadas de todos los servidores MCP), en el formato
+      `{"type": "function", "function": {...}}` que espera la API.
+    - Si el LLM responde con uno o más `tool_calls` dentro de
+      `choices[0].message`, el host ejecuta esas herramientas contra el
+      servidor MCP correspondiente y le devuelve el resultado al LLM
+      como mensajes `role: "tool"` (uno por cada `tool_call_id`),
+      repitiendo hasta que el LLM entregue una respuesta final en texto.
 """
 
 from __future__ import annotations
 
-from host.llm_client import LLMClient, mcp_tools_to_gemini_format
+import json
+
+from host.llm_client import LLMClient, mcp_tools_to_openai_format
 from host.mcp_manager import MCPManager
 from host.session import Session
 
@@ -47,61 +49,51 @@ class Chatbot:
         self.session = session
 
     def ask(self, user_text: str) -> str:
-        self.session.add_user_text(user_text)
-        tools = mcp_tools_to_gemini_format(self.mcp.get_tools_for_llm())
+        self.session.add_user_message(user_text)
+        tools = mcp_tools_to_openai_format(self.mcp.get_tools_for_llm())
 
         for _ in range(MAX_TOOL_ITERATIONS):
-            response = self.llm.send(
-                contents=self.session.as_list(),
-                tools=tools,
-                system=SYSTEM_PROMPT,
-            )
+            response = self.llm.send(messages=self.session.as_list(), tools=tools)
 
-            block_reason = response.get("promptFeedback", {}).get("blockReason")
-            if block_reason:
-                return f"[La solicitud fue bloqueada por seguridad: {block_reason}]"
-
-            candidates = response.get("candidates", [])
-            if not candidates:
+            choices = response.get("choices", [])
+            if not choices:
                 return "[El modelo no devolvió ninguna respuesta]"
 
-            content = candidates[0].get("content", {})
-            parts = content.get("parts", [])
-            self.session.add_model_parts(parts)
+            message = choices[0].get("message", {})
+            self.session.add_assistant_message(message)
 
-            function_calls = [p["functionCall"] for p in parts if "functionCall" in p]
+            tool_calls = message.get("tool_calls") or []
 
-            if not function_calls:
-                text_parts = [p["text"] for p in parts if "text" in p]
-                return "\n".join(text_parts).strip()
+            if not tool_calls:
+                return (message.get("content") or "").strip()
 
-            # Ejecutar cada functionCall contra el servidor MCP correspondiente
-            function_responses = []
-            for call in function_calls:
-                tool_name = call["name"]
-                tool_args = call.get("args", {}) or {}
+            # Ejecutar cada tool_call contra el servidor MCP correspondiente
+            for call in tool_calls:
+                fn = call.get("function", {})
+                tool_name = fn.get("name")
+                try:
+                    tool_args = json.loads(fn.get("arguments") or "{}")
+                except json.JSONDecodeError:
+                    tool_args = {}
+                # El modelo a veces manda `null` explícito para parámetros
+                # opcionales que decidió no usar; los quitamos para que la
+                # herramienta reciba solo los argumentos que sí especificó.
+                tool_args = {k: v for k, v in tool_args.items() if v is not None}
 
                 print(f"  [tool_use] {tool_name}({tool_args})")
                 try:
                     result = self.mcp.call_tool(tool_name, tool_args)
                     result_text = self._stringify_result(result)
-                    response_payload = {"content": result_text}
                 except Exception as exc:  # noqa: BLE001
-                    response_payload = {"error": f"Error ejecutando la herramienta: {exc}"}
+                    result_text = f"Error ejecutando la herramienta: {exc}"
 
-                function_responses.append(
-                    {
-                        "functionResponse": {
-                            "name": tool_name,
-                            "response": response_payload,
-                        }
-                    }
-                )
+                # Cada resultado se envía de vuelta como un mensaje
+                # role="tool", referenciando el tool_call_id que le
+                # corresponde (así lo espera la API de Chat Completions).
+                self.session.add_tool_result(call["id"], result_text)
 
-            # Los resultados de las herramientas se envían de vuelta como un
-            # turno "user" (ver Session.add_function_responses), y el ciclo
-            # continúa: se vuelve a llamar al LLM con el nuevo contexto.
-            self.session.add_function_responses(function_responses)
+            # El ciclo continúa: se vuelve a llamar al LLM con el nuevo
+            # contexto (incluyendo los resultados de las herramientas).
 
         return "[Se alcanzó el número máximo de llamadas a herramientas para esta pregunta]"
 
