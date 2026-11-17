@@ -31,8 +31,10 @@ test_rbac_failure_cannot_be_treated_as_missing_resource (test_shell_flow.ShellFl
 test_shutdown_does_not_touch_foreign_vm (test_shell_flow.ShellFlowTests.test_shutdown_does_not_touch_foreign_vm) ... ok
 test_shutdown_only_targets_owned_vm (test_shell_flow.ShellFlowTests.test_shutdown_only_targets_owned_vm) ... ok
 test_unsafe_nsg_prevents_all_billable_mutations (test_shell_flow.ShellFlowTests.test_unsafe_nsg_prevents_all_billable_mutations) ... ok
+test_regional_pagination_preserves_restrictions_and_family (test_sku_inventory.SkuInventoryTests.test_regional_pagination_preserves_restrictions_and_family) ... ok
+test_untrusted_nextlink_and_loop_are_rejected (test_sku_inventory.SkuInventoryTests.test_untrusted_nextlink_and_loop_are_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 33 tests in 28.820s
+Ran 35 tests in 26.470s
 
 OK

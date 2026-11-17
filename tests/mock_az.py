@@ -57,8 +57,11 @@ elif args[:2] == ["vm", "get-instance-view"]:
 elif args[:1] == ["rest"]:
     if option("--method") != "get":
         raise SystemExit("Fake CLI allows GET only")
-    result = {"subscriptionId": data["request"]["subscription"], "state": "Enabled",
-              "subscriptionPolicies": {"spendingLimit": state.get("spending_limit", "On")}}
+    if "/providers/Microsoft.Compute/skus" in option("--uri"):
+        result = {"value": data["skus"]}
+    else:
+        result = {"subscriptionId": data["request"]["subscription"], "state": "Enabled",
+                  "subscriptionPolicies": {"spendingLimit": state.get("spending_limit", "On")}}
 if state.get("fail_read") and args[:3] == ["network", "nic", "list"]:
     path.write_text(json.dumps(state), encoding="utf-8")
     print("Synthetic RBAC failure", file=sys.stderr)
