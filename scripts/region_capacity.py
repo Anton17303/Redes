@@ -23,7 +23,8 @@ def main():
             value = parameter.get("value")
             if any(key in name.lower() for key in ("location", "region")) and isinstance(value, list):
                 allowed.update(v.lower().replace(" ", "") for v in value if isinstance(v, str))
-    choices = [r for r in ("eastus2", "westus2", "centralus", "southcentralus", "westus3")
+    choices = [r for r in ("canadacentral", "eastus2", "westus2", "centralus", "southcentralus", "westus3",
+                           "francecentral", "spaincentral", "belgiumcentral")
                if not allowed or r in allowed]
     print("Policy location parameters: " + json.dumps(sorted(allowed)), flush=True)
     summary = []
