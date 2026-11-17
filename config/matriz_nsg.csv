@@ -1,0 +1,19 @@
+NSG,Prioridad,Direccion,Regla,Origen,Destino,Puerto,Protocolo,Accion
+NSG-Visitas,100,Inbound,Allow-TI-In,10.0.0.96/27,10.0.0.0/26,*,*,Allow
+NSG-Visitas,4000,Inbound,Deny-VNet-In,VirtualNetwork,10.0.0.0/26,*,*,Deny
+NSG-Visitas,100,Outbound,Deny-Visitas-Interno,10.0.0.0/26,VirtualNetwork,*,*,Deny
+NSG-Ventas,110,Inbound,Allow-TI-In,10.0.0.96/27,10.0.0.64/27,*,*,Allow
+NSG-Ventas,100,Inbound,Deny-Visitas-Ventas,10.0.0.0/26 10.0.0.144/28,10.0.0.64/27,*,*,Deny
+NSG-Ventas,100,Outbound,Deny-TI-Out,10.0.0.64/27,10.0.0.96/27,*,*,Deny
+NSG-TI,100,Inbound,Deny-Otras-A-TI,10.0.0.0/26 10.0.0.64/27 10.0.0.128/28 10.0.0.144/28,10.0.0.96/27,*,*,Deny
+NSG-DataCenter,100,Inbound,Allow-Ventas,10.0.0.64/27,10.0.0.132,53,*,Allow
+NSG-DataCenter,101,Inbound,Allow-Ventas-DNS,10.0.0.64/27,10.0.0.132,53,*,Allow
+NSG-DataCenter,105,Inbound,Allow-Ventas-Intranet,10.0.0.64/27,10.0.0.133,80,Tcp,Allow
+NSG-DataCenter,110,Inbound,Allow-TI,10.0.0.96/27,10.0.0.128/28,*,*,Allow
+NSG-DataCenter,120,Inbound,Allow-DC-Interno,10.0.0.128/28,10.0.0.128/28,*,*,Allow
+NSG-DataCenter,200,Inbound,Deny-Resto-VNet,VirtualNetwork,10.0.0.128/28,*,*,Deny
+NSG-DataCenter,100,Outbound,Deny-TI-Out,10.0.0.128/28,10.0.0.96/27,*,*,Deny
+NSG-DMZ,100,Inbound,Allow-Web-Internet,Internet,10.0.0.144/28,80,Tcp,Allow
+NSG-DMZ,110,Inbound,Allow-TI-Admin,10.0.0.96/27,10.0.0.144/28,22 80,Tcp,Allow
+NSG-DMZ,4000,Inbound,Deny-All-In,*,*,*,*,Deny
+NSG-DMZ,100,Outbound,Deny-Internas-Out,10.0.0.144/28,VirtualNetwork,*,*,Deny

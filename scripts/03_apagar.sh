@@ -5,16 +5,16 @@ source "$(dirname -- "${BASH_SOURCE[0]}")/common.sh"
 require_azure
 OUT=$(new_evidence_dir)
 exec > >(tee "$OUT/deallocate.log") 2>&1
-az_i4 vm show -g "$RG" -n "$VM" -o json > "$OUT/vm-before.json"
+az_project vm show -g "$RG" -n "$VM" -o json > "$OUT/vm-before.json"
 python3 - "$OUT/vm-before.json" <<'PY'
 import json,sys
 vm=json.load(open(sys.argv[1]))
-expected={'proyecto':'CafeNube','integrante':'4','gestion':'cafenube-i4-v1'}
+expected={'proyecto':'CafeNube','componente':'web-publica','gestion':'cafenube-v1'}
 if any((vm.get('tags') or {}).get(k)!=v for k,v in expected.items()):
     raise SystemExit('Recurso sin identificación propia; se cancela desasignación')
 PY
-az_i4 vm deallocate -g "$RG" -n "$VM"
-az_i4 vm get-instance-view -g "$RG" -n "$VM" -o json > "$OUT/vm-after.json"
+az_project vm deallocate -g "$RG" -n "$VM"
+az_project vm get-instance-view -g "$RG" -n "$VM" -o json > "$OUT/vm-after.json"
 python3 - "$OUT/vm-after.json" <<'PY'
 import json,sys
 view=json.load(open(sys.argv[1]))

@@ -7,6 +7,6 @@ if [[ $# -gt 1 ]]; then die 'Uso: bash 00_preflight.sh [directorio-de-evidencia]
 OUT="${1:-$(new_evidence_dir)}"
 mkdir -p "$OUT"
 exec > >(tee "$OUT/preflight.log") 2>&1
-python3 "$I4_ROOT/scripts/azure_snapshot.py" "$OUT"
-python3 "$I4_ROOT/scripts/validate_azure.py" "$OUT"
+python3 "$PROJECT_ROOT/scripts/azure_snapshot.py" "$OUT"
+python3 "$PROJECT_ROOT/scripts/validate_azure.py" "$OUT"
 printf 'Preflight aprobado. Inventario y plan: %s\n' "$OUT"

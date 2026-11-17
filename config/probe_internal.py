@@ -77,7 +77,7 @@ def main():
                "dns_tcp": probe(lambda: dns_query("TCP")), "intranet_http": probe(http_query)}
     if globals().get("ROLE") == "TI":
         results["admin_ssh"] = probe(ssh_query)
-    print("I4_PROBE_JSON=" + json.dumps(results, ensure_ascii=True))
+    print("CAFENUBE_PROBE_JSON=" + json.dumps(results, ensure_ascii=True))
 
 
 if __name__ == "__main__":

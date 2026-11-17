@@ -10,6 +10,8 @@ SOURCES = {
     "web/styles.css": ("/var/www/cafenube/styles.css", "0644"),
     "config/nginx_cafenube.conf": ("/etc/nginx/sites-available/cafenube", "0644"),
     "config/bootstrap.sh": ("/usr/local/sbin/cafenube-bootstrap", "0755"),
+    "config/hardening_vm.sh": ("/usr/local/sbin/cafenube-hardening", "0755"),
+    "config/ssh_hardening.conf": ("/etc/ssh/sshd_config.d/00-cafenube.conf", "0644"),
 }
 
 
@@ -20,11 +22,6 @@ def render():
          "content": (ROOT / source).read_text("utf-8")}
         for source, (dest, mode) in SOURCES.items()
     ]
-    config["write_files"].append({
-        "path": "/etc/ssh/sshd_config.d/00-cafenube.conf",
-        "permissions": "0644", "owner": "root:root",
-        "content": "PasswordAuthentication no\nKbdInteractiveAuthentication no\nPermitRootLogin no\nX11Forwarding no\n",
-    })
     payload = "#cloud-config\n" + json.dumps(config, ensure_ascii=False, indent=2) + "\n"
     if len(payload.encode("utf-8")) >= 65536:
         raise ValueError("Azure custom-data debe ocupar menos de 64 KiB")

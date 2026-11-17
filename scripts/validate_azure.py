@@ -14,7 +14,7 @@ LOCATION = "northcentralus"
 PRIVATE = "10.0.0.148"
 DMZ = "10.0.0.144/28"
 TI = "10.0.0.96/27"
-OWNER = {"proyecto": "CafeNube", "integrante": "4", "gestion": "cafenube-i4-v1"}
+OWNER = {"proyecto": "CafeNube", "componente": "web-publica", "gestion": "cafenube-v1"}
 
 
 def need(condition, message):
@@ -84,7 +84,7 @@ def security(nsg):
                 if "22" in dp:
                     ssh.append(priority)
             else:
-                raise ValueError(f"{name}: acceso fuera del perfil HTTP80 / SSH desde TI; revisar con José Antón")
+                raise ValueError(f"{name}: acceso fuera del perfil HTTP80 / SSH desde TI; revisar con el área de seguridad")
         else:
             need(src <= {"*", DMZ, PRIVATE, PRIVATE + "/32"}, f"{name}: origen no corresponde a DMZ")
             if dst == {"Internet"} and protocol == "tcp" and dp <= {"80", "443"}:
@@ -140,7 +140,7 @@ def validate(data):
     need(not vnet.get("virtualNetworkPeerings"), "VNet con peering: requiere revisión adicional de rutas")
     subnets = vnet.get("subnets", [])
     dmz = next((s for s in subnets if s.get("name") == "Subnet-DMZ"), None)
-    need(dmz is not None, "Falta Subnet-DMZ: coordinar con José Ordóñez; no se crea automáticamente")
+    need(dmz is not None, "Falta Subnet-DMZ: coordinar con el área de redes; no se crea automáticamente")
     need((dmz.get("addressPrefixes") or [dmz.get("addressPrefix")]) == [DMZ], "CIDR de Subnet-DMZ incorrecto")
     need(same(dmz.get("networkSecurityGroup", {}).get("id"), nsg["id"]), "Subnet-DMZ no usa NSG-DMZ")
     need(not dmz.get("routeTable") and not dmz.get("delegations"), "DMZ con UDR/delegación: revisar salida y rutas antes de desplegar")

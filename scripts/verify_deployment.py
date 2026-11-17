@@ -188,7 +188,7 @@ def privacy_inventory(evidence, data):
         evidence.result("private-direct-ip-" + name, "FAIL" if exposed else ("PASS" if complete else "INCONCLUSIVE"),
                         "Inventario de todas las NIC: asociación directa de IP pública")
         if proxy:
-            evidence.result("private-proxy-" + name, "INCONCLUSIVE", "NIC asociada a balanceador/gateway; revisar publicación indirecta con Adrián/José")
+            evidence.result("private-proxy-" + name, "INCONCLUSIVE", "NIC asociada a balanceador/gateway; revisar publicación indirecta con las áreas de servicios y seguridad")
     for kind, resource_type in (("load-balancers", "Microsoft.Network/loadBalancers"),
                                 ("app-gateways", "Microsoft.Network/applicationGateways"),
                                 ("firewalls", "Microsoft.Network/azureFirewalls")):
@@ -200,7 +200,7 @@ def privacy_inventory(evidence, data):
             evidence.result("private-indirect-" + kind, "INCONCLUSIVE" if possible else "PASS",
                             "Revisar frontends/reglas/backend privados" if possible else "No hay recursos de este tipo en la suscripción")
     evidence.result("private-publication-scope", "PENDING",
-                    "Adrián/José deben confirmar ausencia de proxies/túneles/DNS público ajenos a este inventario y aportar prueba externa")
+                    "las áreas de servicios y seguridad deben confirmar ausencia de proxies/túneles/DNS público ajenos a este inventario y aportar prueba externa")
 
 
 def main():
@@ -235,7 +235,7 @@ def main():
         evidence.result("effective-nsg-association", "PASS" if ids == {expected} else "FAIL", "Reglas efectivas guardadas y NSG esperado único")
     evidence.azure("effective-routes", "network", "nic", "show-effective-route-table", "-g", "RG-CafeNube", "-n", "NIC-Web-Publica")
     policy_ok = flow_tests(evidence)
-    guest = run_remote(evidence, "VM-Web-Publica", "guest-services", (ROOT / "config/verify_guest.py").read_text("utf-8"), "I4_GUEST_JSON=")
+    guest = run_remote(evidence, "VM-Web-Publica", "guest-services", (ROOT / "config/verify_guest.py").read_text("utf-8"), "CAFENUBE_GUEST_JSON=")
     if guest:
         for key in ("cloud_init", "nginx_config", "nginx_service", "http_loopback"):
             check = guest.get(key, {})
@@ -249,11 +249,11 @@ def main():
               all(setting in ssh.splitlines() for setting in ("passwordauthentication no", "permitrootlogin no", "kbdinteractiveauthentication no")))
         evidence.result("guest-hardening", "PASS" if ok else "FAIL", "UFW, marcador de bootstrap y configuración efectiva de sshd")
     probe_script = (ROOT / "config/probe_internal.py").read_text("utf-8")
-    negative = run_remote(evidence, "VM-Web-Publica", "dmz-probes", "ROLE='DMZ'\n" + probe_script, "I4_PROBE_JSON=")
+    negative = run_remote(evidence, "VM-Web-Publica", "dmz-probes", "ROLE='DMZ'\n" + probe_script, "CAFENUBE_PROBE_JSON=")
     positive = None
     ti = next((v for v in data["vms"] if v.get("name") == "VM-TI-1" and "/resourcegroups/rg-cafenube/" in v.get("id", "").lower()), None)
     if ti and running(evidence, "VM-TI-1", "ti-vm-state"):
-        positive = run_remote(evidence, "VM-TI-1", "ti-positive-controls", "ROLE='TI'\n" + probe_script, "I4_PROBE_JSON=")
+        positive = run_remote(evidence, "VM-TI-1", "ti-positive-controls", "ROLE='TI'\n" + probe_script, "CAFENUBE_PROBE_JSON=")
     if not positive:
         evidence.result("positive-controls", "PENDING", "Requiere VM-TI-1 activa y servicios privados sanos; un timeout desde DMZ no prueba aislamiento")
     for name in ("dns_udp", "dns_tcp", "intranet_http"):

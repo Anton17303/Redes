@@ -122,7 +122,7 @@ class SafetyTests(unittest.TestCase):
             "wrong-cidr": lambda d: d["vnet"]["subnets"][0].update(addressPrefix="10.0.0.128/28"),
             "wrong-nsg": lambda d: d["vnet"]["subnets"][0].update(networkSecurityGroup={"id": "other"}),
             "custom-routes": lambda d: d["vnet"]["subnets"][0].update(routeTable={"id": "other"}),
-            "wrong-owner": lambda d: d["pips"][0]["tags"].update(integrante="2"),
+            "wrong-owner": lambda d: d["pips"][0]["tags"].update(componente="otro"),
             "wrong-label": lambda d: d["pips"][0]["dnsSettings"].update(domainNameLabel="different"),
             "wrong-subnet": lambda d: d["nics"][0]["ipConfigurations"][0].update(subnet={"id": "other"}),
             "extra-nic-nsg": lambda d: d["nics"][0].update(networkSecurityGroup={"id": "other"}),
@@ -177,7 +177,7 @@ class SafetyTests(unittest.TestCase):
             evidence = Evidence(Path(tmp))
             evidence.azure = lambda *args: {"value": [{"code": "ProvisioningState/succeeded", "message": "script exit 1"}]}
             with contextlib.redirect_stdout(io.StringIO()):
-                self.assertIsNone(run_remote(evidence, "test", "test", "", "I4_GUEST_JSON="))
+                self.assertIsNone(run_remote(evidence, "test", "test", "", "CAFENUBE_GUEST_JSON="))
             self.assertEqual(evidence.finish(), 2)
 
     def test_failed_evidence_returns_nonzero_and_persists(self):

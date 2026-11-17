@@ -124,7 +124,7 @@ class ShellFlowTests(unittest.TestCase):
 
     def test_shutdown_does_not_touch_foreign_vm(self):
         data = fixture(True)
-        data['vms'][0]['tags']['integrante'] = '2'
+        data['vms'][0]['tags']['componente'] = 'otro'
         self.state.write_text(json.dumps({'data':data,'calls':[]}), encoding='utf-8')
         result = self.run_script('03_apagar.sh')
         self.assertNotEqual(result.returncode, 0)

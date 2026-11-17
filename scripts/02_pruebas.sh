@@ -5,4 +5,4 @@ set -euo pipefail
 source "$(dirname -- "${BASH_SOURCE[0]}")/common.sh"
 require_azure
 OUT=$(new_evidence_dir)
-python3 "$I4_ROOT/scripts/verify_deployment.py" --output "$OUT" "$@"
+python3 "$PROJECT_ROOT/scripts/verify_deployment.py" --output "$OUT" "$@"

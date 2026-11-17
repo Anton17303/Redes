@@ -20,8 +20,8 @@ fi
 require_azure
 OUT=$(new_evidence_dir)
 exec > >(tee "$OUT/deployment.log") 2>&1
-python3 "$I4_ROOT/scripts/render_cloud_init.py"
-bash "$I4_ROOT/scripts/00_preflight.sh" "$OUT"
+python3 "$PROJECT_ROOT/scripts/render_cloud_init.py"
+bash "$PROJECT_ROOT/scripts/00_preflight.sh" "$OUT"
 if [[ "$APPLY" == 0 ]]; then
     printf 'Solo plan. No se crearon recursos. Revisar %s/plan.json y docs/CLOUD_SHELL.md\n' "$OUT"
     exit 0
@@ -29,7 +29,7 @@ fi
 [[ -f "$CAFENUBE_SSH_PUBLIC_KEY" ]] || die 'No existe la clave pública configurada. Ver docs/CLOUD_SHELL.md.'
 command -v ssh-keygen >/dev/null || die 'Falta ssh-keygen para validar la clave pública antes de crear recursos.'
 ssh-keygen -lf "$CAFENUBE_SSH_PUBLIC_KEY" >/dev/null || die 'La clave pública OpenSSH es inválida.'
-python3 "$I4_ROOT/scripts/check_credit_guard.py" \
+python3 "$PROJECT_ROOT/scripts/check_credit_guard.py" \
     --review "$CAFENUBE_CREDIT_REVIEW" --budget-usd "$BUDGET" --output "$OUT"
 python3 - "$CAFENUBE_SSH_PUBLIC_KEY" "$OUT" "$BUDGET" "$APPROVER" <<'PY'
 import base64, json, sys
@@ -46,32 +46,32 @@ Path(sys.argv[2], 'approval.json').write_text(json.dumps({
 }, indent=2)+'\n')
 PY
 state() { python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["resources"][sys.argv[2]])' "$OUT/plan.json" "$1"; }
-TAGS=('proyecto=CafeNube' 'integrante=4' 'gestion=cafenube-i4-v1')
+TAGS=('proyecto=CafeNube' 'componente=web-publica' 'gestion=cafenube-v1')
 # El preflight valida TODO recurso existente antes de esta primera mutación.
 # Si ocurre un fallo parcial, se conservan los recursos propios para reintentar.
 trap 'printf "Despliegue interrumpido. No se borró nada. Revisar recursos propios y repetir preflight. Evidencia: %s\n" "$OUT" >&2' ERR
 if [[ "$(state pip)" == create ]]; then
-    az_i4 network public-ip create -g "$RG" -n "$PIP" -l "$LOC" \
+    az_project network public-ip create -g "$RG" -n "$PIP" -l "$LOC" \
         --sku Standard --tier Regional --allocation-method Static --version IPv4 \
         --dns-name "$CAFENUBE_DNS_LABEL" --tags "${TAGS[@]}" -o none
 fi
 if [[ "$(state nic)" == create ]]; then
-    az_i4 network nic create -g "$RG" -n "$NIC" -l "$LOC" \
+    az_project network nic create -g "$RG" -n "$NIC" -l "$LOC" \
         --vnet-name VNet-CafeNube --subnet Subnet-DMZ --private-ip-address 10.0.0.148 \
         --public-ip-address "$PIP" --dns-servers 168.63.129.16 \
         --ip-forwarding false --tags "${TAGS[@]}" -o none
 fi
 if [[ "$(state vm)" == create ]]; then
-    az_i4 vm create -g "$RG" -n "$VM" -l "$LOC" --image Ubuntu2204 \
+    az_project vm create -g "$RG" -n "$VM" -l "$LOC" --image Ubuntu2204 \
         --nics "$NIC" --size "$CAFENUBE_VM_SIZE" --admin-username azureuser \
         --authentication-type ssh --ssh-key-values "$CAFENUBE_SSH_PUBLIC_KEY" \
-        --custom-data "$I4_ROOT/build/cloud-init.yaml" --storage-sku Standard_LRS \
+        --custom-data "$PROJECT_ROOT/build/cloud-init.yaml" --storage-sku Standard_LRS \
         --os-disk-name Disk-Web-Publica-OS --os-disk-size-gb 30 \
         --tags "${TAGS[@]}" -o none
 else
     printf 'VM existente validada; no se modifica, reinicia ni inicia automáticamente.\n'
 fi
-az_i4 network public-ip show -g "$RG" -n "$PIP" \
+az_project network public-ip show -g "$RG" -n "$PIP" \
     --query '{fqdn:dnsSettings.fqdn,ip:ipAddress}' -o json > "$OUT/public-endpoint.json"
 cat "$OUT/public-endpoint.json"
 printf 'Creación de recursos terminada. La disponibilidad de Nginx aún debe probarse.\n'

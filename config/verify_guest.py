@@ -29,7 +29,7 @@ def main():
         "listeners": command("ss", "-H", "-lntup"),
         "bootstrap_ready": Path("/var/lib/cafenube-ready").is_file(),
     }
-    print("I4_GUEST_JSON=" + json.dumps(results, ensure_ascii=True))
+    print("CAFENUBE_GUEST_JSON=" + json.dumps(results, ensure_ascii=True))
 
 
 if __name__ == "__main__":
