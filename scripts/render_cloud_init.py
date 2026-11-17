@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build deterministic cloud-config YAML (JSON is a YAML subset), no dependencies."""
 import argparse
+import base64
 import json
 from pathlib import Path
 
@@ -18,11 +19,13 @@ SOURCES = {
 def render():
     config = json.loads((ROOT / "config/cloud-init.base.json").read_text("utf-8"))
     config["write_files"] = [
-        {"path": dest, "permissions": mode, "owner": "root:root",
-         "content": (ROOT / source).read_text("utf-8")}
+        {"path": dest, "permissions": mode, "owner": "root:root", "encoding": "b64",
+         "content": base64.b64encode((ROOT / source).read_text("utf-8").encode("utf-8")).decode("ascii")}
         for source, (dest, mode) in SOURCES.items()
     ]
-    payload = "#cloud-config\n" + json.dumps(config, ensure_ascii=False, indent=2) + "\n"
+    # ASCII transport avoids Azure CLI's Latin-1 conversion of custom-data.
+    # cloud-init decodes UTF-8 file bytes, preserving accents and emoji exactly.
+    payload = "#cloud-config\n" + json.dumps(config, ensure_ascii=True, indent=2) + "\n"
     if len(payload.encode("utf-8")) >= 65536:
         raise ValueError("Azure custom-data debe ocupar menos de 64 KiB")
     return payload

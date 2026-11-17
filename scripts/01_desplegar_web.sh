@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Sin argumentos: solo plan. --apply requiere aprobación explícita y preflight nuevo.
-set -euo pipefail
+set -Eeuo pipefail
 source "$(dirname -- "${BASH_SOURCE[0]}")/common.sh"
 APPLY=0
 BUDGET=''

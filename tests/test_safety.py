@@ -1,5 +1,6 @@
 """Offline fixtures are synthetic test data, never Azure evidence."""
 import contextlib
+import base64
 import io
 import json
 import sys
@@ -175,7 +176,9 @@ class SafetyTests(unittest.TestCase):
     def test_cloud_init_has_exact_current_sources_and_no_tls(self):
         payload = render()
         config = json.loads(payload.split("\n", 1)[1])
-        files = {item["path"]: item["content"] for item in config["write_files"]}
+        self.assertTrue(payload.isascii())
+        self.assertTrue(all(item.get("encoding") == "b64" for item in config["write_files"]))
+        files = {item["path"]: base64.b64decode(item["content"], validate=True).decode("utf-8") for item in config["write_files"]}
         for source, (target, _) in SOURCES.items():
             self.assertEqual(files[target], (ROOT / source).read_text("utf-8"))
         self.assertLess(len(payload.encode("utf-8")), 65536)

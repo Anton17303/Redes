@@ -18,7 +18,7 @@ Fecha: **17 de noviembre de 2026**, zona del trabajo: America/Guatemala. Alcance
 | Sintaxis de los 10 archivos Bash | PASS con `bash -n` |
 | Compilación de módulos Python | PASS con `compileall` |
 | Generación determinista de cloud-config y correspondencia exacta con fuentes | PASS |
-| Parseo independiente de YAML | PASS: 6 archivos, 13517 bytes, por debajo de 64 KiB |
+| Parseo independiente de YAML | PASS: 6 archivos, 17291 bytes, por debajo de 64 KiB |
 | `nginx -t` con configuración entregada, cambiando solo puerto/root para loopback | PASS en Nginx 1.28.0 para Windows |
 | `/`, `/styles.css`, `/healthz` | HTTP 200; HTML/CSS exactos y marcador de salud correcto |
 | Ruta inexistente y archivo oculto | 404 y 403, respectivamente |
