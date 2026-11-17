@@ -4,7 +4,7 @@ set -euo pipefail
 ROLE="${1:-}"
 UPDATE_PACKAGES="${2:-0}"
 [[ $(id -u) == 0 ]] || { echo 'Se requiere root'; exit 1; }
-case "$ROLE" in dns|intranet|cliente|visitas|web) ;; *) echo 'Rol inválido'; exit 1;; esac
+case "$ROLE" in dns|intranet|servicios|cliente|visitas|web) ;; *) echo 'Rol inválido'; exit 1;; esac
 [[ "$UPDATE_PACKAGES" == 0 || "$UPDATE_PACKAGES" == 1 ]] || exit 1
 [[ -s /home/azureuser/.ssh/authorized_keys ]] || { echo 'Sin clave autorizada; se detiene antes de cambiar SSH'; exit 1; }
 if [[ "$UPDATE_PACKAGES" == 1 ]]; then
@@ -38,12 +38,14 @@ ufw default deny incoming
 ufw default allow outgoing
 ufw allow from 10.0.0.96/27 to any port 22 proto tcp
 case "$ROLE" in
-    dns)
+    dns|servicios)
         for network in 10.0.0.64/27 10.0.0.96/27 10.0.0.128/28; do
             ufw allow from "$network" to any port 53 proto tcp
             ufw allow from "$network" to any port 53 proto udp
         done ;;
-    intranet)
+esac
+case "$ROLE" in
+    intranet|servicios)
         for network in 10.0.0.64/27 10.0.0.96/27 10.0.0.128/28; do
             ufw allow from "$network" to any port 80 proto tcp
         done ;;

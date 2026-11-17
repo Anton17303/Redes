@@ -1,0 +1,12 @@
+[Unit]
+Description=CafeNube private Intranet secondary address
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/cafenube-private-ip
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+zone "cafenube.internal" {
+    type master;
+    file "/etc/bind/db.cafenube.internal";
+    allow-update { none; };
+    allow-transfer { none; };
+};
+
+zone "0.0.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.10.0.0";
+    allow-update { none; };
+    allow-transfer { none; };
+};

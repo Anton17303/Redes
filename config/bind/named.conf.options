@@ -1,0 +1,22 @@
+acl cafenube_empleados {
+    127.0.0.0/8;
+    10.0.0.64/27;
+    10.0.0.96/27;
+    10.0.0.128/28;
+};
+
+options {
+    directory "/var/cache/bind";
+    listen-on port 53 { 127.0.0.1; 10.0.0.132; };
+    listen-on-v6 { none; };
+    allow-query { cafenube_empleados; };
+    allow-recursion { cafenube_empleados; };
+    allow-query-cache { cafenube_empleados; };
+    allow-transfer { none; };
+    recursion yes;
+    forwarders { 168.63.129.16; };
+    forward only;
+    dnssec-validation auto;
+    minimal-responses yes;
+    version none;
+};

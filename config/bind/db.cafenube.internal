@@ -1,0 +1,12 @@
+$TTL 300
+@ IN SOA dns.cafenube.internal. hostmaster.cafenube.internal. (
+    2026111701 ; serial
+    3600       ; refresh
+    900        ; retry
+    604800     ; expire
+    300        ; negative cache
+)
+@        IN NS dns.cafenube.internal.
+dns      IN A  10.0.0.132
+rrhh     IN A  10.0.0.133
+intranet IN A  10.0.0.133

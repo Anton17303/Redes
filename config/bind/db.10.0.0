@@ -1,0 +1,7 @@
+$TTL 300
+@ IN SOA dns.cafenube.internal. hostmaster.cafenube.internal. (
+    2026111701 3600 900 604800 300
+)
+@   IN NS  dns.cafenube.internal.
+132 IN PTR dns.cafenube.internal.
+133 IN PTR rrhh.cafenube.internal.
