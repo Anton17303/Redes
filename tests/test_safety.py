@@ -161,6 +161,17 @@ class SafetyTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     validate(data)
 
+    def test_azure_int64_quota_strings_are_supported_without_accepting_unknown_values(self):
+        data = fixture()
+        for quota in data["usage"]:
+            quota["limit"], quota["currentValue"] = "10", "0"
+        validate(data)
+        for value in ("unknown", "10.5", -1, True, None):
+            with self.subTest(value=value):
+                data["usage"][0]["limit"] = value
+                with self.assertRaises(ValueError):
+                    validate(data)
+
     def test_cloud_init_has_exact_current_sources_and_no_tls(self):
         payload = render()
         config = json.loads(payload.split("\n", 1)[1])

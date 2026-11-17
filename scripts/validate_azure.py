@@ -26,6 +26,13 @@ def same(a, b):
     return bool(a and b) and a.lower() == b.lower()
 
 
+def quota_count(value):
+    # Newer CLI serializers may return Azure Int64 values as decimal strings.
+    need(isinstance(value, (int, str)) and not isinstance(value, bool)
+         and str(value).isascii() and str(value).isdigit(), "Valor de cuota desconocido/no entero")
+    return int(value)
+
+
 def prefixes(rule, field):
     plural = rule.get(field + "es") if field.endswith("Prefix") else None
     return plural or [rule.get(field)]
@@ -211,7 +218,7 @@ def validate(data):
         need(cores > 0 and sku.get("family"), "Azure no informó vCPU/familia del SKU")
         for quota_name in ("cores", sku["family"]):
             quota = next((q for q in data["usage"] if q.get("name", {}).get("value", "").lower() == quota_name.lower()), None)
-            need(quota and quota["limit"] - quota["currentValue"] >= cores,
+            need(quota and quota_count(quota["limit"]) - quota_count(quota["currentValue"]) >= cores,
                  f"Cuota regional/familia insuficiente o desconocida: {quota_name}")
     return {"subscription": req["subscription"], "resource_group": RG, "location": LOCATION,
             "subnet": DMZ, "private_ip": PRIVATE, "dns_label": req["dns_label"], "vm_size": req["vm_size"],

@@ -2,6 +2,7 @@ test_enabled_protection_and_sufficient_credit (test_credit_guard.CreditGuardTest
 test_excessive_nonfinite_or_nonpositive_budget_rejected (test_credit_guard.CreditGuardTests.test_excessive_nonfinite_or_nonpositive_budget_rejected) ... ok
 test_old_future_expired_or_mismatched_review_rejected (test_credit_guard.CreditGuardTests.test_old_future_expired_or_mismatched_review_rejected) ... ok
 test_unknown_off_or_temporary_off_protection_rejected (test_credit_guard.CreditGuardTests.test_unknown_off_or_temporary_off_protection_rejected) ... ok
+test_azure_int64_quota_strings_are_supported_without_accepting_unknown_values (test_safety.SafetyTests.test_azure_int64_quota_strings_are_supported_without_accepting_unknown_values) ... ok
 test_cloud_init_has_exact_current_sources_and_no_tls (test_safety.SafetyTests.test_cloud_init_has_exact_current_sources_and_no_tls) ... ok
 test_collision_in_other_resource_group_same_subnet (test_safety.SafetyTests.test_collision_in_other_resource_group_same_subnet) ... ok
 test_failed_evidence_returns_nonzero_and_persists (test_safety.SafetyTests.test_failed_evidence_returns_nonzero_and_persists) ... ok
@@ -35,6 +36,6 @@ test_regional_pagination_preserves_restrictions_and_family (test_sku_inventory.S
 test_untrusted_nextlink_and_loop_are_rejected (test_sku_inventory.SkuInventoryTests.test_untrusted_nextlink_and_loop_are_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 35 tests in 26.442s
+Ran 36 tests in 26.746s
 
 OK
