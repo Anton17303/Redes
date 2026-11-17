@@ -1,0 +1,238 @@
+{
+  "utc": "2026-11-17T20:18:36.556146+00:00",
+  "tests": [
+    {
+      "test": "configured-security",
+      "result": "PASS",
+      "detail": "Perfil conservador NSG validado incluyendo reglas predeterminadas"
+    },
+    {
+      "test": "private-VM-DNS",
+      "result": "PENDING",
+      "detail": "No existe en el inventario de la suscripción"
+    },
+    {
+      "test": "private-VM-Intranet",
+      "result": "PENDING",
+      "detail": "No existe en el inventario de la suscripción"
+    },
+    {
+      "test": "private-indirect-load-balancers",
+      "result": "PASS",
+      "detail": "No hay recursos de este tipo en la suscripción"
+    },
+    {
+      "test": "private-indirect-app-gateways",
+      "result": "PASS",
+      "detail": "No hay recursos de este tipo en la suscripción"
+    },
+    {
+      "test": "private-indirect-firewalls",
+      "result": "PASS",
+      "detail": "No hay recursos de este tipo en la suscripción"
+    },
+    {
+      "test": "private-publication-scope",
+      "result": "PENDING",
+      "detail": "las áreas de servicios y seguridad deben confirmar ausencia de proxies/túneles/DNS público ajenos a este inventario y aportar prueba externa"
+    },
+    {
+      "test": "dns-system",
+      "result": "PASS",
+      "detail": "cafenube-ventas-publica.northcentralus.cloudapp.azure.com -> ['40.116.80.26']; esperado 40.116.80.26"
+    },
+    {
+      "test": "dns-public-1.1.1.1",
+      "result": "PASS",
+      "detail": "Respuesta pública guardada; cotejada con IP de Azure"
+    },
+    {
+      "test": "dns-public-8.8.8.8",
+      "result": "PASS",
+      "detail": "Respuesta pública guardada; cotejada con IP de Azure"
+    },
+    {
+      "test": "http/",
+      "result": "PASS",
+      "detail": "Esperado HTTP200 y contenido exacto; observado HTTP200, contenido_coincide=True; fuente: CloudShell-standard-outside-VNet"
+    },
+    {
+      "test": "nginx-public-headers",
+      "result": "PASS",
+      "detail": "Esperado Nginx sin versión y cabeceras de seguridad; coincide=True"
+    },
+    {
+      "test": "http/styles.css",
+      "result": "PASS",
+      "detail": "Esperado HTTP200 y contenido exacto; observado HTTP200, contenido_coincide=True; fuente: CloudShell-standard-outside-VNet"
+    },
+    {
+      "test": "http/healthz",
+      "result": "PASS",
+      "detail": "Esperado HTTP200 y contenido exacto; observado HTTP200, contenido_coincide=True; fuente: CloudShell-standard-outside-VNet"
+    },
+    {
+      "test": "effective-nsg-association",
+      "result": "PASS",
+      "detail": "{'nsg_ids': ['/subscriptions/SUBSCRIPTION_REDACTED/resourcegroups/rg-cafenube/providers/microsoft.network/networksecuritygroups/nsg-dmz'], 'additional_admin_denies': ['securityRules/DefaultIPv6OutboundDeny']}"
+    },
+    {
+      "test": "ip-flow-http-internet",
+      "result": "PASS",
+      "detail": "Esperado Allow; resultado {'access': 'Allow', 'ruleName': 'securityRules/Allow-Web-Internet'}"
+    },
+    {
+      "test": "ip-flow-ssh-ti",
+      "result": "PASS",
+      "detail": "Esperado Allow; resultado {'access': 'Allow', 'ruleName': 'securityRules/Allow-TI-Admin'}"
+    },
+    {
+      "test": "ip-flow-internet-22",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-internet-443",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-internet-53",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-internet-3389",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-internet-dns-udp",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-visitas-in-22",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-visitas-in-80",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-ventas-in-22",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-ventas-in-80",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-dc-in-22",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-dc-in-80",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-All-In'}"
+    },
+    {
+      "test": "ip-flow-dmz-to-ventas",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-Internas-Out'}"
+    },
+    {
+      "test": "ip-flow-dmz-to-ti",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-Internas-Out'}"
+    },
+    {
+      "test": "ip-flow-dmz-to-dns-tcp",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-Internas-Out'}"
+    },
+    {
+      "test": "ip-flow-dmz-to-dns-udp",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-Internas-Out'}"
+    },
+    {
+      "test": "ip-flow-dmz-to-intranet",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-Internas-Out'}"
+    },
+    {
+      "test": "ip-flow-dmz-to-visitas",
+      "result": "PASS",
+      "detail": "Esperado Deny; resultado {'access': 'Deny', 'ruleName': 'securityRules/Deny-Internas-Out'}"
+    },
+    {
+      "test": "guest-cloud_init",
+      "result": "PASS",
+      "detail": "{'exit_code': 0, 'stdout': 'status: done\\nextended_status: done\\nboot_status_code: enabled-by-generator\\nlast_update: Thu, 01 Jan 1970 00:00:12 +0000\\ndetail: DataSourceAzure [seed=/var/lib/waagent]\\nerrors: []\\nrecoverable_errors: {}\\n', 'stderr': ''}"
+    },
+    {
+      "test": "guest-nginx_config",
+      "result": "PASS",
+      "detail": "{'exit_code': 0, 'stdout': '', 'stderr': 'nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\\nnginx: configuration file /etc/nginx/nginx.conf test is successful\\n'}"
+    },
+    {
+      "test": "guest-nginx_service",
+      "result": "PASS",
+      "detail": "{'exit_code': 0, 'stdout': 'active\\n', 'stderr': ''}"
+    },
+    {
+      "test": "guest-http_loopback",
+      "result": "PASS",
+      "detail": "{'exit_code': 0, 'stdout': 'cafenube-ok\\n', 'stderr': ''}"
+    },
+    {
+      "test": "guest-hardening",
+      "result": "PASS",
+      "detail": "UFW, marcador de bootstrap y configuración efectiva de sshd"
+    },
+    {
+      "test": "positive-controls",
+      "result": "PENDING",
+      "detail": "Requiere VM-TI-1 activa y servicios privados sanos; un timeout desde DMZ no prueba aislamiento"
+    },
+    {
+      "test": "dmz-isolation-dns_udp",
+      "result": "INCONCLUSIVE",
+      "detail": "Falta control positivo sano, prueba guest o Deny efectivo; no atribuirlo a NSG"
+    },
+    {
+      "test": "dmz-isolation-dns_tcp",
+      "result": "INCONCLUSIVE",
+      "detail": "Falta control positivo sano, prueba guest o Deny efectivo; no atribuirlo a NSG"
+    },
+    {
+      "test": "dmz-isolation-intranet_http",
+      "result": "INCONCLUSIVE",
+      "detail": "Falta control positivo sano, prueba guest o Deny efectivo; no atribuirlo a NSG"
+    },
+    {
+      "test": "browser-external-screenshot",
+      "result": "PENDING",
+      "detail": "Abrir FQDN en navegador externo y guardar captura real con fecha/origen"
+    }
+  ],
+  "provenance": {
+    "kind": "Derived public copy of original Azure test results",
+    "source": "20261117T201227Z-bgZatC/results.json",
+    "redactions": [
+      "subscription UUID in effective NSG resource path"
+    ],
+    "original_sha256": "2389ce38df9b501a800f96bf46901cdf92cc07dc7c049e23f14dd7dcd97198b8",
+    "status_counts": {
+      "PASS": 36,
+      "PENDING": 5,
+      "INCONCLUSIVE": 3
+    }
+  }
+}

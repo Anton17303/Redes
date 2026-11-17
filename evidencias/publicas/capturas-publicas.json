@@ -1,0 +1,39 @@
+{
+  "utc": "2026-11-17T19:52:29.679856+00:00",
+  "source": "Isolated Chromium on local computer, real Azure public endpoint",
+  "captures": [
+    {
+      "viewport": [
+        1440,
+        1000
+      ],
+      "status": 200,
+      "overflow": false,
+      "file": "web-publica-desktop.png",
+      "sha256": "321dcffd0f27be75d1c14d13e18cd44317788bad0f4db9320d0996518e445329",
+      "url": "http://cafenube-ventas-publica.northcentralus.cloudapp.azure.com/"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "status": 200,
+      "overflow": false,
+      "file": "web-publica-movil.png",
+      "sha256": "d81617fefce9f6d60975155d6ff4cef25496fc69e04bb2b35c7e030fde17d288",
+      "url": "http://cafenube-ventas-publica.northcentralus.cloudapp.azure.com/"
+    },
+    {
+      "viewport": [
+        320,
+        740
+      ],
+      "status": 200,
+      "overflow": false,
+      "file": "web-publica-movil-pequeno.png",
+      "sha256": "2612fe0937870ce9c8a8f964a6fa2c4ebaacab9b562e9822b2b170e2fe3cc690",
+      "url": "http://cafenube-ventas-publica.northcentralus.cloudapp.azure.com/"
+    }
+  ]
+}

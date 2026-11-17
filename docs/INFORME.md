@@ -4,19 +4,19 @@
 
 El proyecto incorpora una web pública estática para la venta de café de especialidad por suscripción, con los orígenes Huehuetenango, Antigua Guatemala y Cobán. HTML/CSS adaptables se sirven mediante Nginx HTTP TCP 80 en una VM Ubuntu de la DMZ. El sitio no maneja pagos, autenticación ni información personal.
 
-La arquitectura conserva `VNet-CafeNube=10.0.0.0/16` y las redes Visitas `/26`, Ventas `/27`, TI `/27` y Data Center `/28`. La DMZ acordada es `10.0.0.144/28`, con IP propuesta `10.0.0.148`. La IP y el FQDN finales se obtienen de Azure después de desplegar; no se deducen ni inventan.
+La arquitectura conserva `VNet-CafeNube=10.0.0.0/16` y las redes Visitas `/26`, Ventas `/27`, TI `/27` y Data Center `/28`. La DMZ desplegada es `10.0.0.144/28`, con `VM-Web-Publica` en `10.0.0.148`. Azure asignó la IPv4 pública `40.116.80.26` y el FQDN `cafenube-ventas-publica.northcentralus.cloudapp.azure.com`. Se comprobó HTTP desde fuera de la VNet; la URL depende del encendido de la VM.
 
-La política integrada restringe administración a TI, acceso público a TCP 80, servicios privados a empleados autorizados e inicios desde la DMZ hacia redes internas. La regla amplia histórica de Ventas se reduce al servicio DNS. No se publica HTTPS sin TLS.
+La política integrada restringe administración a TI, acceso público a TCP 80, servicios privados a empleados autorizados e inicios desde la DMZ hacia redes internas. Ventas tiene permisos específicos hacia DNS 53 e Intranet 80, sin acceso general al Data Center. No se publica HTTPS sin TLS.
 
 El hardening compartido configura SSH por clave, UFW, servicios y parámetros de red. cloud-init se genera desde las fuentes de la web y configuración para mantenerlas sincronizadas. El mantenimiento no activa NAT Gateway automáticamente.
 
 ## Evidencia y límites
 
-Las pruebas locales se registran en [VALIDACION_LOCAL.md](../evidencias/VALIDACION_LOCAL.md). Las respuestas de CLI simulada corresponden a inventario sintético y no son evidencia de Azure. La [revisión inicial real](../evidencias/REVISION_AZURE_2026-11-17.md) encontró ausentes la DMZ/NSG y detuvo el despliegue.
+Las pruebas locales se registran en [VALIDACION_LOCAL.md](../evidencias/VALIDACION_LOCAL.md). Las respuestas de CLI simulada corresponden a inventario sintético y no son evidencia de Azure. La [revisión inicial real](../evidencias/REVISION_AZURE_2026-11-17.md) encontró ausentes la DMZ/NSG. Esa dependencia se resolvió durante el [despliegue posterior](../evidencias/DESPLIEGUE_AZURE_2026-11-17.md), que registra pruebas reales, recuperación del arranque y límites pendientes.
 
 Durante la integración se consultó ARM desde Cloud Shell y se observó protección de gasto `On` en la suscripción estudiantil. El saldo se conserva de forma privada. Crédito disponible no equivale a tarifa cero; ver [COSTOS_Y_CREDITOS.md](COSTOS_Y_CREDITOS.md).
 
-| Dato que debe completarse con ejecución real | Fuente |
+| Evidencia de ejecución y cierre | Fuente |
 |---|---|
 | VM/NIC/subred/IP privadas | Inventario y configuración Azure |
 | IPv4 pública y FQDN | `public-endpoint.json` / `endpoint.json` |

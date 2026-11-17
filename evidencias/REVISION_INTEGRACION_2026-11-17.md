@@ -27,4 +27,4 @@ Se revisó el contenido de `fase2_nsg_hardening.zip`. Se corrigieron DMZ propues
 
 La funcionalidad queda integrada por componentes: catálogo NSG, plan/aplicación, matriz CSV generada, hardening compartido por rol y pruebas de red con controles positivos. El NAT de mantenimiento no se incorpora al flujo automático por su costo. La actualización de servidores privados requiere definir su salida a Internet por separado.
 
-Las consultas previas no prueban que la política integrada ya se haya aplicado. El despliegue, dominio y conectividad deben registrarse con resultados posteriores reales.
+Esta revisión registra el estado inicial. La política y la DMZ se aplicaron después; consultar los [resultados posteriores del despliegue](DESPLIEGUE_AZURE_2026-11-17.md) para el dominio y las pruebas reales.

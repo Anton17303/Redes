@@ -33,6 +33,8 @@ La DMZ nueva se asocia al NSG después de configurar sus reglas. No se cambia el
 
 Un timeout solo se considera aislamiento aprobado si el servicio responde desde TI y Azure devuelve una regla Deny efectiva. Una conexión rechazada por el servidor demuestra alcance de red y no se cuenta como bloqueo NSG. Sin VM activa, control sano o Network Watcher existente, se conserva `PENDING`/`INCONCLUSIVE`.
 
+La consulta real de reglas efectivas devolvió el NSG de la DMZ y una capa adicional de Network Manager que deniega salida IPv6. Se conservó esa política. El verificador admite esa capa únicamente cuando sus reglas administrativas identificadas son `Deny`; rechaza capas desconocidas o permisos administrativos `Allow`/`AlwaysAllow`. `AlwaysAllow` puede omitir la evaluación de NSGs y requiere una revisión distinta. Ver [evaluación de reglas administrativas](https://learn.microsoft.com/en-us/azure/virtual-network-manager/concept-security-admins).
+
 La matriz TCP no sustituye DNS UDP, resolución funcional de empleados ni pruebas de Internet desde Visitas. No se publica el DNS privado ni la Intranet. Deben revisarse también balanceadores, proxies, túneles y nombres públicos fuera del inventario directo de NICs.
 
 ## Correcciones del informe base

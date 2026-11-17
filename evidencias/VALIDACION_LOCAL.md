@@ -2,11 +2,11 @@
 
 Fecha: **17 de noviembre de 2026**, zona del trabajo: America/Guatemala. Alcance: repositorio unificado, Bash de Git para Windows, Python3, Nginx oficial para Windows y Chromium de prueba aislado.
 
-**Despliegue Azure: PENDING.** Estas pruebas se ejecutaron primero de forma local. Posteriormente se consiguió acceso al portal y a Cloud Shell y se hizo un preflight real, detenido por dependencias ausentes. Ver [REVISION_AZURE_2026-11-17.md](REVISION_AZURE_2026-11-17.md). No se generaron IPs/FQDN ni se atribuyeron éxitos de publicación pública a la validación local.
+Estas comprobaciones verifican el código y la web local. El despliegue posterior y sus pruebas reales se documentan por separado en [DESPLIEGUE_AZURE_2026-11-17.md](DESPLIEGUE_AZURE_2026-11-17.md). Las primeras revisiones de Azure conservan el estado histórico previo a la creación de la DMZ.
 
 | Comprobación realmente ejecutada | Resultado |
 |---|---|
-| Pruebas `unittest`, incluyendo subcasos de seguridad | Consultar número y resultado de la última ejecución en `pruebas-locales.txt` |
+| Pruebas `unittest`, incluyendo subcasos de seguridad | 38 pruebas PASS; registro en `pruebas-locales.txt` |
 | Plan por defecto sin mutaciones, aprobación de costo obligatoria | PASS contra CLI ficticia aislada |
 | Protección de gasto apagada/desconocida, saldo insuficiente o revisión vencida | Rechazados; integración con CLI ficticia confirma cero creaciones con protección apagada |
 | Aplicar y repetir sin duplicar PIP/NIC/VM | PASS contra CLI ficticia aislada |
@@ -15,10 +15,10 @@ Fecha: **17 de noviembre de 2026**, zona del trabajo: America/Guatemala. Alcance
 | Error RBAC y clave pública inválida | Detienen la creación antes de mutaciones cobrables |
 | Desasignación de la VM propia; rechazo de la ajena | PASS contra CLI ficticia aislada |
 | Run Command «succeeded» sin resultado del guest | Se registra INCONCLUSIVE, nunca PASS |
-| Sintaxis de los 10 archivos Bash | PASS con `bash -n` |
+| Sintaxis de los 11 archivos Bash | PASS con `bash -n` |
 | Compilación de módulos Python | PASS con `compileall` |
 | Generación determinista de cloud-config y correspondencia exacta con fuentes | PASS |
-| Parseo independiente de YAML | PASS: 6 archivos, 17291 bytes, por debajo de 64 KiB |
+| Parseo independiente de YAML y decodificación base64 contra las fuentes | PASS: 6 archivos, 17531 bytes ASCII, por debajo de 64 KiB |
 | `nginx -t` con configuración entregada, cambiando solo puerto/root para loopback | PASS en Nginx 1.28.0 para Windows |
 | `/`, `/styles.css`, `/healthz` | HTTP 200; HTML/CSS exactos y marcador de salud correcto |
 | Ruta inexistente y archivo oculto | 404 y 403, respectivamente |

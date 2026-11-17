@@ -84,8 +84,23 @@ Abrir `http://FQDN_REAL/` desde Internet y guardar captura auténtica con URL, f
 ## Conservación y apagado
 
 ```bash
-tar -czf cafenube-evidencias.tar.gz -C evidencias azure
 bash scripts/03_apagar.sh
+tar -czf cafenube-evidencias.tar.gz -C evidencias azure
 ```
 
 Descargar el paquete antes de terminar la sesión efímera. En el diálogo de descarga no duplicar el prefijo del directorio de inicio; hacer clic en el enlace final del archivo. Verificar `PowerState/deallocated` de la VM pública. Revisar los costos persistentes de disco/IP y acordar su conservación. Nunca eliminar el grupo para detener una demostración.
+
+La VM de esta entrega quedó desasignada. Antes de una nueva demostración, revisar crédito, protección de gasto y ventana de uso; comprobar las etiquetas propias y que el recurso sigue coincidiendo con el inventario. `01_desplegar_web.sh` no inicia una VM existente. El inicio deliberado se realiza con `az vm start --subscription "$CAFENUBE_SUBSCRIPTION_ID" -g RG-CafeNube -n VM-Web-Publica`, seguido de las pruebas y de `03_apagar.sh`. No ejecutar el comando sobre otros recursos.
+
+## Recuperación controlada de la web
+
+Si cloud-init o Nginx fallan, conservar primero los resultados y ejecutar el diagnóstico de solo lectura `config/diagnose_boot.sh` mediante Run Command. Para revisar y reponer exclusivamente las seis fuentes administradas en la VM web propia:
+
+```bash
+source config/deployment.env
+python3 scripts/repair_web.py --output evidencias/azure/recuperacion-web
+# Revisar el plan y los diagnósticos antes de aplicar.
+python3 scripts/repair_web.py --apply --output evidencias/azure/recuperacion-web-aplicada
+```
+
+La recuperación comprueba la propiedad del recurso, valida Nginx y SSH, ejecuta el bootstrap y guarda respuestas originales. No borra errores históricos de cloud-init ni reinicia otras VMs. Tras corregir una causa de arranque, un reinicio de la VM web requiere repetir las pruebas y conservar ambos resultados. El despliegue del 17/11/2026 corrigió una carrera de recarga de Nginx añadiendo reintentos acotados del endpoint de salud.

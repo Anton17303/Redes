@@ -2,22 +2,24 @@
 
 `VALIDACION_LOCAL.md` registra comprobaciones realmente ejecutadas en este equipo. Las capturas de `local-render/` muestran una instancia de prueba en loopback y **no** demuestran acceso público desde Azure.
 
-[REVISION_AZURE_2026-11-17.md](REVISION_AZURE_2026-11-17.md) registra la inspección real posterior: preflight detenido por ausencia de NSG-DMZ y Subnet-DMZ. Los logs originales descargados se conservan en `azure/revision-real-20261117/` y en `azure/cafenube-preflight.tar.gz`, ignorados por Git. Los resultados del servicio público continúan pendientes.
+[DESPLIEGUE_AZURE_2026-11-17.md](DESPLIEGUE_AZURE_2026-11-17.md) registra la aplicación de seguridad, el despliegue y las pruebas finales. Las revisiones anteriores conservan el estado histórico previo a la DMZ. Los inventarios completos, registros y archivos descargados permanecen en `azure/`, ignorados por Git. El resumen público y las capturas seleccionadas se entregan por separado.
 
 Al ejecutar los scripts conectados a Azure, los inventarios, resultados y aprobaciones se guardan en `azure/<fecha-UTC>-<identificador>/`. Las capturas manuales pueden guardarse en `capturas/`. Ambas carpetas se ignoran en Git: revisar datos y elegir qué adjuntar al reporte, sin credenciales. Los fixtures offline se mantienen en temporales de prueba, separados de las evidencias reales.
+
+Las tres capturas externas seleccionadas y su manifiesto revisado se incluyen en [publicas/](publicas/). No contienen datos de la cuenta ni imágenes del portal.
 
 ## Estado de aceptación del escenario Azure
 
 | Prueba | Resultado real actual | Evidencia requerida |
 |---|---|---|
-| FQDN resuelve a la PIP | PENDING | DNS sistema + resolvedores públicos |
-| HTTP desde fuera de la VNet | PENDING |200, contenido esperado, origen externo declarado |
-| Nginx/cloud-init sanos | PENDING | Configuración válida, servicio activo, marcador bootstrap y `/healthz` |
-| Página visible en navegador externo | PENDING | Captura con URL real y fecha |
-| DMZ no inicia hacia redes privadas | PENDING | Deny efectivo + probes DMZ + servicios sanos desde TI |
-| SSH restringido a TI | PENDING | Allow/Deny de flujo, SSH guest y banner desde TI |
-| DNS/Intranet no publicados | PENDING | NICs sin PIP, revisión de intermediarios y prueba externa conjunta |
-| VM pública desasignada al terminar | PENDING | Estado `PowerState/deallocated` |
+| FQDN resuelve a la PIP | PASS | DNS sistema, 1.1.1.1 y 8.8.8.8 |
+| HTTP desde fuera de la VNet | PASS | 200, contenido exacto; Cloud Shell externo y equipo local |
+| Nginx/cloud-init sanos | PASS | Guest real después del reinicio; `done`, servicio activo, marcador y salud |
+| Página visible en navegador externo | PASS por evidencia adicional | Capturas reales y manifiesto con URL, fecha, origen y hashes |
+| DMZ no inicia hacia redes privadas | INCONCLUSIVE funcional | Deny efectivo PASS; faltan servicios sanos y control desde TI |
+| SSH restringido a TI | PASS de reglas/guest; prueba práctica PENDING | Allow/Deny y SSH efectivo confirmados; falta cliente TI |
+| DNS/Intranet no publicados | PENDING | VMs ausentes; revisión completa de intermediarios y prueba conjunta pendiente |
+| VM pública desasignada al terminar | PASS | Respuesta real `PowerState/deallocated` |
 
 ## Registro mínimo por prueba
 
