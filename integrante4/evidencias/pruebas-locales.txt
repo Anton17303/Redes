@@ -1,0 +1,26 @@
+test_cloud_init_has_exact_current_sources_and_no_tls (test_safety.SafetyTests.test_cloud_init_has_exact_current_sources_and_no_tls) ... ok
+test_collision_in_other_resource_group_same_subnet (test_safety.SafetyTests.test_collision_in_other_resource_group_same_subnet) ... ok
+test_failed_evidence_returns_nonzero_and_persists (test_safety.SafetyTests.test_failed_evidence_returns_nonzero_and_persists) ... ok
+test_fresh_plan_is_read_only_and_requires_approval (test_safety.SafetyTests.test_fresh_plan_is_read_only_and_requires_approval) ... ok
+test_low_quota_and_orphan_disk_stop_creation (test_safety.SafetyTests.test_low_quota_and_orphan_disk_stop_creation) ... ok
+test_matching_private_ip_in_other_vnet_is_not_a_collision (test_safety.SafetyTests.test_matching_private_ip_in_other_vnet_is_not_a_collision) ... ok
+test_partial_rerun_reuses_own_pip_and_nic (test_safety.SafetyTests.test_partial_rerun_reuses_own_pip_and_nic) ... ok
+test_plural_port_443_is_not_missed (test_safety.SafetyTests.test_plural_port_443_is_not_missed) ... ok
+test_plural_safe_rules_are_supported (test_safety.SafetyTests.test_plural_safe_rules_are_supported) ... ok
+test_rejects_network_and_resource_conflicts (test_safety.SafetyTests.test_rejects_network_and_resource_conflicts) ... ok
+test_rejects_unsafe_security_profiles (test_safety.SafetyTests.test_rejects_unsafe_security_profiles) ... ok
+test_run_command_success_without_guest_marker_is_inconclusive (test_safety.SafetyTests.test_run_command_success_without_guest_marker_is_inconclusive) ... ok
+test_valid_rerun_reuses_all_resources_and_occupied_own_ip (test_safety.SafetyTests.test_valid_rerun_reuses_all_resources_and_occupied_own_ip) ... ok
+test_apply_then_rerun_does_not_duplicate_resources (test_shell_flow.ShellFlowTests.test_apply_then_rerun_does_not_duplicate_resources) ... ok
+test_apply_without_budget_stops_before_azure (test_shell_flow.ShellFlowTests.test_apply_without_budget_stops_before_azure) ... ok
+test_default_plan_performs_no_mutations (test_shell_flow.ShellFlowTests.test_default_plan_performs_no_mutations) ... ok
+test_invalid_public_key_prevents_billable_mutations (test_shell_flow.ShellFlowTests.test_invalid_public_key_prevents_billable_mutations) ... ok
+test_rbac_failure_cannot_be_treated_as_missing_resource (test_shell_flow.ShellFlowTests.test_rbac_failure_cannot_be_treated_as_missing_resource) ... ok
+test_shutdown_does_not_touch_foreign_vm (test_shell_flow.ShellFlowTests.test_shutdown_does_not_touch_foreign_vm) ... ok
+test_shutdown_only_targets_owned_vm (test_shell_flow.ShellFlowTests.test_shutdown_only_targets_owned_vm) ... ok
+test_unsafe_nsg_prevents_all_billable_mutations (test_shell_flow.ShellFlowTests.test_unsafe_nsg_prevents_all_billable_mutations) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 20.907s
+
+OK
