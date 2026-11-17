@@ -74,7 +74,9 @@ def collect(output):
         "disks": ("disk", "list", "-g", RG),
         "ip_available": ("network", "vnet", "check-ip-address", "-g", RG,
                          "-n", "VNet-CafeNube", "--ip-address", "10.0.0.148"),
-        "dns_available": ("network", "check-dns", "--name", label, "-l", LOC),
+        "dns_available": ("rest", "--method", "get", "--uri",
+                          f"/subscriptions/{subscription}/providers/Microsoft.Network/locations/{LOC}/checkDnsNameAvailability",
+                          "--url-parameters", "api-version=2025-05-01", "domainNameLabel=" + label),
         "usage": ("vm", "list-usage", "-l", LOC),
     }
     for name, args in queries.items():

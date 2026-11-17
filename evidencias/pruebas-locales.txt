@@ -35,6 +35,6 @@ test_regional_pagination_preserves_restrictions_and_family (test_sku_inventory.S
 test_untrusted_nextlink_and_loop_are_rejected (test_sku_inventory.SkuInventoryTests.test_untrusted_nextlink_and_loop_are_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 35 tests in 26.470s
+Ran 35 tests in 26.442s
 
 OK

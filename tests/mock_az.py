@@ -23,7 +23,7 @@ keys = {
     ("network", "vnet", "show"): "vnet", ("network", "nsg", "show"): "nsg",
     ("network", "nic", "list"): "nics", ("network", "public-ip", "list"): "pips",
     ("vm", "list"): "vms", ("disk", "list"): "disks",
-    ("network", "vnet", "check-ip-address"): "ip_available", ("network", "check-dns"): "dns_available",
+    ("network", "vnet", "check-ip-address"): "ip_available",
     ("vm", "list-skus"): "skus", ("vm", "list-usage"): "usage",
 }
 result = None
@@ -57,7 +57,9 @@ elif args[:2] == ["vm", "get-instance-view"]:
 elif args[:1] == ["rest"]:
     if option("--method") != "get":
         raise SystemExit("Fake CLI allows GET only")
-    if "/providers/Microsoft.Compute/skus" in option("--uri"):
+    if "/checkDnsNameAvailability" in option("--uri"):
+        result = data["dns_available"]
+    elif "/providers/Microsoft.Compute/skus" in option("--uri"):
         result = {"value": data["skus"]}
     else:
         result = {"subscriptionId": data["request"]["subscription"], "state": "Enabled",
