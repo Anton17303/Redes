@@ -1,0 +1,14 @@
+/build/
+/config/deployment.env
+/evidencias/azure/
+/evidencias/capturas/
+/evidencias/local-render/
+__pycache__/
+*.pyc
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.pfx
+*.p12
+*.log
