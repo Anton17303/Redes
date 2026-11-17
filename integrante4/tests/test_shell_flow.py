@@ -9,6 +9,7 @@ import struct
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 
 from test_safety import ROOT, SUBSCRIPTION, fixture
@@ -39,11 +40,17 @@ class ShellFlowTests(unittest.TestCase):
         self.key = self.folder / "public.pub"
         public_blob = struct.pack('!I', 11) + b'ssh-ed25519' + struct.pack('!I', 32) + b'\x01' * 32
         self.key.write_text("ssh-ed25519 " + base64.b64encode(public_blob).decode('ascii') + " synthetic-public-key\n")
+        self.credit_review = self.folder / "synthetic-credit-review.json"
+        self.credit_review.write_text(json.dumps({
+            'subscription_id':SUBSCRIPTION, 'reviewed_at_utc':datetime.now(timezone.utc).isoformat(),
+            'expires_on':'2099-01-01', 'available_lower_bound_usd':'10.00'
+        }), encoding='utf-8')
         self.env = {**os.environ, "PATH": str(self.folder) + os.pathsep + os.environ["PATH"],
                     "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8",
                     "CAFENUBE_TEST_STATE": str(self.state), "CAFENUBE_SUBSCRIPTION_ID": SUBSCRIPTION,
                     "CAFENUBE_DNS_LABEL": "cafenube-test", "CAFENUBE_VM_SIZE": "Standard_B2ats_v2",
                     "CAFENUBE_EVIDENCE_ROOT": str(self.folder / "synthetic-evidence").replace("\\", "/"),
+                    "CAFENUBE_CREDIT_REVIEW": str(self.credit_review).replace("\\", "/"),
                     "CAFENUBE_SSH_PUBLIC_KEY": str(self.key).replace("\\", "/")}
 
     def run_script(self, script, *args):
@@ -96,6 +103,14 @@ class ShellFlowTests(unittest.TestCase):
         second = self.run_script("01_desplegar_web.sh", *args)
         self.assertEqual(second.returncode, 0, second.stdout + second.stderr)
         self.assertEqual(len(self.mutations()), 3)
+
+    def test_disabled_spending_protection_prevents_billable_mutations(self):
+        state = json.loads(self.state.read_text('utf-8'))
+        state['spending_limit'] = 'Off'
+        self.state.write_text(json.dumps(state), encoding='utf-8')
+        result = self.run_script('01_desplegar_web.sh', '--apply', '--budget-usd', '1', '--approved-by', 'TEST ONLY')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(self.mutations(), [])
 
     def test_shutdown_only_targets_owned_vm(self):
         state = {"data": fixture(True), "calls": []}

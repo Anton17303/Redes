@@ -9,6 +9,7 @@ export CAFENUBE_SUBSCRIPTION_ID="${CAFENUBE_SUBSCRIPTION_ID:-}"
 export CAFENUBE_DNS_LABEL="${CAFENUBE_DNS_LABEL:-cafenube-ventas-nina-231088}"
 export CAFENUBE_VM_SIZE="${CAFENUBE_VM_SIZE:-Standard_B2ats_v2}"
 export CAFENUBE_SSH_PUBLIC_KEY="${CAFENUBE_SSH_PUBLIC_KEY:-$HOME/.ssh/cafenube-i4.pub}"
+export CAFENUBE_CREDIT_REVIEW="${CAFENUBE_CREDIT_REVIEW:-$I4_ROOT/config/credit-review.json}"
 RG='RG-CafeNube'
 LOC='northcentralus'
 VM='VM-Web-Publica'

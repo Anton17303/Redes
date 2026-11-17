@@ -29,6 +29,8 @@ fi
 [[ -f "$CAFENUBE_SSH_PUBLIC_KEY" ]] || die 'No existe la clave pública configurada. Ver docs/CLOUD_SHELL.md.'
 command -v ssh-keygen >/dev/null || die 'Falta ssh-keygen para validar la clave pública antes de crear recursos.'
 ssh-keygen -lf "$CAFENUBE_SSH_PUBLIC_KEY" >/dev/null || die 'La clave pública OpenSSH es inválida.'
+python3 "$I4_ROOT/scripts/check_credit_guard.py" \
+    --review "$CAFENUBE_CREDIT_REVIEW" --budget-usd "$BUDGET" --output "$OUT"
 python3 - "$CAFENUBE_SSH_PUBLIC_KEY" "$OUT" "$BUDGET" "$APPROVER" <<'PY'
 import base64, json, sys
 from datetime import datetime, timezone
