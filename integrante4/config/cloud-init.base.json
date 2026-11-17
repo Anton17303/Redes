@@ -1,0 +1,8 @@
+{
+  "package_update": true,
+  "package_upgrade": true,
+  "packages": ["nginx", "ufw", "curl", "dnsutils"],
+  "ssh_pwauth": false,
+  "disable_root": true,
+  "runcmd": [["bash", "/usr/local/sbin/cafenube-bootstrap"]]
+}
