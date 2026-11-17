@@ -18,6 +18,26 @@ from validate_azure import PRIVATE, same, validate
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def effective_association(data, expected_id):
+    entries = data.get("value", []) if isinstance(data, dict) else data
+    if not isinstance(entries, list) or not entries:
+        return False, {"reason": "Respuesta efectiva vacía o desconocida"}
+    ids, admin_denies = set(), []
+    for entry in entries:
+        reference = (entry.get("networkSecurityGroup") or {}).get("id")
+        if reference:
+            ids.add(reference.lower())
+            continue
+        # Azure can add Network Manager admin rules without an NSG reference.
+        # Only extra Deny rules are accepted: AlwaysAllow can bypass an NSG.
+        manager = (entry.get("association") or {}).get("networkManager") or {}
+        rules = entry.get("effectiveSecurityRules") or []
+        if not manager.get("id") or not rules or any(r.get("access") != "Deny" for r in rules):
+            return False, {"reason": "Capa adicional no identificada o con permisos que requieren revisión"}
+        admin_denies.extend(r.get("name", "unnamed") for r in rules)
+    return ids == {expected_id.lower()}, {"nsg_ids": sorted(ids), "additional_admin_denies": admin_denies}
+
+
 class Evidence:
     def __init__(self, output):
         self.output = output
@@ -229,10 +249,8 @@ def main():
         return evidence.finish()
     effective = evidence.azure("effective-nsg", "network", "nic", "list-effective-nsg", "-g", "RG-CafeNube", "-n", "NIC-Web-Publica")
     if effective is not None:
-        entries = effective.get("value", []) if isinstance(effective, dict) else effective
-        ids = {e.get("networkSecurityGroup", {}).get("id", "").lower() for e in entries}
-        expected = data["nsg"]["id"].lower()
-        evidence.result("effective-nsg-association", "PASS" if ids == {expected} else "FAIL", "Reglas efectivas guardadas y NSG esperado único")
+        valid, detail = effective_association(effective, data["nsg"]["id"])
+        evidence.result("effective-nsg-association", "PASS" if valid else "FAIL", str(detail))
     evidence.azure("effective-routes", "network", "nic", "show-effective-route-table", "-g", "RG-CafeNube", "-n", "NIC-Web-Publica")
     policy_ok = flow_tests(evidence)
     guest = run_remote(evidence, "VM-Web-Publica", "guest-services", (ROOT / "config/verify_guest.py").read_text("utf-8"), "CAFENUBE_GUEST_JSON=")
