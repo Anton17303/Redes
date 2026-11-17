@@ -48,7 +48,8 @@ def resource_skus(subscription, size):
             parameters.write_text(json.dumps(dict(parse_qsl(parsed.query))), encoding="utf-8")
             page = request("rest", "--method", "get", "--uri", endpoint,
                            "--url-parameters", "@" + str(parameters), timeout=120)
-        result.extend(s for s in page["value"] if s.get("name") == size and s.get("resourceType") == "virtualMachines")
+        result.extend(s for s in page["value"] if (size is None or s.get("name") == size)
+                      and s.get("resourceType") == "virtualMachines")
         uri = page.get("nextLink")
     return result
 

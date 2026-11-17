@@ -33,3 +33,11 @@ class SkuInventoryTests(unittest.TestCase):
             with self.subTest(link=link), patch("azure_snapshot.request", return_value={"value": [], "nextLink": link}):
                 with self.assertRaises(ValueError):
                     resource_skus("synthetic", SIZE)
+
+    def test_capacity_inventory_includes_other_vm_sizes_only_when_requested(self):
+        values = [{"name": SIZE, "resourceType": "virtualMachines"},
+                  {"name": "Standard_B1s", "resourceType": "virtualMachines"},
+                  {"name": "disk", "resourceType": "disks"}]
+        with patch("azure_snapshot.request", return_value={"value": values}):
+            self.assertEqual(resource_skus("synthetic", None), values[:2])
+            self.assertEqual(resource_skus("synthetic", SIZE), values[:1])
