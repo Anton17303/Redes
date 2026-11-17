@@ -45,6 +45,8 @@ Revisar en Azure Pricing Calculator o en el portal el tamaño `Standard_B2ats_v2
 
 Registrar con el dueño de la suscripción: tamaño, horas máximas, monto total en USD, crédito disponible y responsable del apagado. **`--budget-usd` registra el monto aprobado; no establece un corte automático de facturación.** No se han creado alertas de costo ni un recurso Budget desde estos scripts.
 
+Revisar [COSTOS_Y_CREDITOS.md](COSTOS_Y_CREDITOS.md) y completar `config/credit-review.json` a partir del ejemplo, con un saldo real vigente observado hace menos de 24 horas. `check_credit_guard.py` consulta además la política de la suscripción y exige `spendingLimit: On`. Un valor distinto o desconocido bloquea las creaciones; el script no cambia el plan ni retira protecciones de gasto.
+
 Preparar una clave pública existente y válida. Si hace falta una nueva, crearla fuera del repositorio y protegerla personalmente:
 
 ```bash

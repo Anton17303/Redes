@@ -4,7 +4,7 @@
 
 1. Resolver los bloqueos comprobados en Azure: faltan `Subnet-DMZ` y `NSG-DMZ`. El preflight ya se ejecutó en la suscripción real y se detuvo con `ResourceNotFound`, sin crear recursos. Ver [registro de revisión](../evidencias/REVISION_AZURE_2026-11-17.md).
 2. Acordar la creación de la DMZ con José Ordóñez y las reglas/asociación del NSG con José Antón, incluidos defaults, salida y administración. Ajustar la regla 443 del informe si aún no hay TLS. Repetir el preflight después de integrar esas dependencias.
-3. Revisar precios/crédito y aprobar tamaño, horas y presupuesto antes de crear PIP, disco y VM.
+3. Completar la revisión de protección de gasto, SKU/cuotas y beneficios gratuitos. Ya se observó el crédito estudiantil en Education Hub y se consultaron tarifas oficiales; el saldo se conserva en archivos privados. Falta confirmar `spendingLimit: On` desde Azure y aprobar tamaño, horas y presupuesto antes de crear PIP, disco y VM. Ver [costos y controles](COSTOS_Y_CREDITOS.md).
 4. Desplegar desde Cloud Shell. Verificar cloud-init, Nginx, UFW y SSH en Ubuntu, que no se han ejecutado en una VM real durante la preparación local.
 5. Ejecutar DNS público/HTTP desde una red externa, reglas efectivas y controles de aislamiento con los servidores internos activos. Guardar logs y capturas auténticas.
 6. Confirmar con Adrián/José que no existe publicación directa ni indirecta del DNS privado y la Intranet.

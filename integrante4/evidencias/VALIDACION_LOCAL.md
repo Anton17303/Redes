@@ -6,8 +6,9 @@ Fecha: **17 de noviembre de 2026**, zona del trabajo: America/Guatemala. Alcance
 
 | Comprobación realmente ejecutada | Resultado |
 |---|---|
-| 21 pruebas `unittest`, incluyendo subcasos de seguridad | PASS, registro en `pruebas-locales.txt` |
+| 26 pruebas `unittest`, incluyendo subcasos de seguridad | PASS, registro en `pruebas-locales.txt` |
 | Plan por defecto sin mutaciones, aprobación de costo obligatoria | PASS contra CLI ficticia aislada |
+| Protección de gasto apagada/desconocida, saldo insuficiente o revisión vencida | Rechazados; integración con CLI ficticia confirma cero creaciones con protección apagada |
 | Aplicar y repetir sin duplicar PIP/NIC/VM | PASS contra CLI ficticia aislada |
 | SSH público, 443 sin TLS y excepciones hacia redes privadas | Rechazados por el validador |
 | Recursos ajenos, conflicto de IP, cuota insuficiente, disco huérfano | Rechazados por el validador |

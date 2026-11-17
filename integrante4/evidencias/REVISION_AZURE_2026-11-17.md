@@ -74,3 +74,9 @@ Los originales se ignoran por Git porque contienen identificadores completos de 
 5. Integrar DNS/Intranet con Adrián y las evidencias del equipo con Diego. El reporte debe reflejar el Bastion existente y las dependencias aún ausentes.
 
 No se iniciaron ni desasignaron las VMs ajenas, no se registraron proveedores de recursos ni se cambiaron redes, reglas, etiquetas o recursos existentes. No se creó PIP, NIC, disco ni VM durante esta revisión.
+
+## Revisión posterior de crédito y costos
+
+Se abrió Education Hub en la misma sesión autenticada y se observó el beneficio estudiantil activo, su saldo y vencimiento. El portal separado de Sponsorships no mostraba un patrocinio activo; no se usó ese mensaje para concluir que no existían créditos. Los valores financieros se conservaron únicamente en archivos locales ignorados por Git.
+
+Se consultaron tarifas generales de la API oficial Azure Retail Prices para la configuración propuesta; ver [COSTOS_Y_CREDITOS.md](../docs/COSTOS_Y_CREDITOS.md). No se confirmó todavía el valor ARM `subscriptionPolicies.spendingLimit`, ni la cuota/SKU ni los beneficios gratuitos específicos de esa VM/disco. El nuevo control de despliegue exige protección `On`, revisión reciente del saldo y presupuesto explícito; las 26 pruebas locales usan datos sintéticos. La revisión no creó recursos ni autorizó consumo.

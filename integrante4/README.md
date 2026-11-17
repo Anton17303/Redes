@@ -28,6 +28,8 @@ bash scripts/01_desplegar_web.sh
 
 El despliegue sin argumentos **solo produce un plan**. Para crear recursos hay que aprobar antes el costo, tener una clave SSH pública válida y usar los argumentos documentados. Los scripts nunca crean ni modifican VNet, subredes, NSGs o sus reglas. Una política que no puede comprobarse detiene el despliegue.
 
+También se comprueba la protección de gasto `On` y una revisión privada y reciente del crédito antes de crear recursos. Ver [COSTOS_Y_CREDITOS.md](docs/COSTOS_Y_CREDITOS.md). Una cuota gratuita de VM no vuelve gratuitos automáticamente el disco y la IP pública.
+
 ## Diseño previsto
 
 | Recurso | Valor acordado, pendiente de verificar en Azure |
