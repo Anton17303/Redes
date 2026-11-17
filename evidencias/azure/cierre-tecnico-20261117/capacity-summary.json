@@ -1,0 +1,402 @@
+{
+  "utc": "2026-11-17T21:58:01.558632+00:00",
+  "spending_limit": "On",
+  "vms": [
+    {
+      "name": "VM-Ventas-1",
+      "size": "Standard_B2ats_v2",
+      "state": "VM deallocated",
+      "security": {
+        "securityType": "Standard"
+      }
+    },
+    {
+      "name": "VM-Ventas-2",
+      "size": "Standard_B2ats_v2",
+      "state": "VM deallocated",
+      "security": {
+        "securityType": "TrustedLaunch",
+        "uefiSettings": {
+          "secureBootEnabled": true,
+          "vTpmEnabled": true
+        }
+      }
+    },
+    {
+      "name": "VM-Web-Publica",
+      "size": "Standard_B2ats_v2",
+      "state": "VM deallocated",
+      "security": {
+        "securityType": "Standard"
+      }
+    }
+  ],
+  "quota": [
+    {
+      "currentValue": "6",
+      "limit": "10",
+      "localName": "Standard Basv2 Family vCPUs",
+      "name": {
+        "localizedValue": "Standard Basv2 Family vCPUs",
+        "value": "standardBasv2Family"
+      },
+      "unit": "Count"
+    },
+    {
+      "currentValue": "6",
+      "limit": "6",
+      "localName": "Total Regional vCPUs",
+      "name": {
+        "localizedValue": "Total Regional vCPUs",
+        "value": "cores"
+      },
+      "unit": "Count"
+    },
+    {
+      "currentValue": "0",
+      "limit": "4",
+      "localName": "Standard BS Family vCPUs",
+      "name": {
+        "localizedValue": "Standard BS Family vCPUs",
+        "value": "standardBSFamily"
+      },
+      "unit": "Count"
+    }
+  ],
+  "small_skus": [
+    {
+      "name": "Standard_A1_v2",
+      "family": "standardAv2Family",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "10240",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1",
+        "MemoryGB": "2",
+        "PremiumIO": "False"
+      }
+    },
+    {
+      "name": "Standard_B1ls",
+      "family": "standardBSFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "4096",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "0.5",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_B1ms",
+      "family": "standardBSFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "4096",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "2",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_B1s",
+      "family": "standardBSFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "4096",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "1",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_B2ats_v2",
+      "family": "standardBasv2Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "2",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "1",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_D1",
+      "family": "standardDFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "51200",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1",
+        "MemoryGB": "3.5",
+        "PremiumIO": "False"
+      }
+    },
+    {
+      "name": "Standard_D1_v2",
+      "family": "standardDv2Family",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "51200",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1",
+        "MemoryGB": "3.5",
+        "PremiumIO": "False"
+      }
+    },
+    {
+      "name": "Standard_DS1",
+      "family": "standardDSFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "7168",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "3.5",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_DS1_v2",
+      "family": "standardDSv2Family",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "7168",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "3.5",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1",
+      "family": "standardFFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "16384",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1",
+        "MemoryGB": "2",
+        "PremiumIO": "False"
+      }
+    },
+    {
+      "name": "Standard_F1ads_v7",
+      "family": "StandardFadsv7Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "1",
+        "HyperVGenerations": "V2",
+        "MemoryGB": "4",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1alds_v7",
+      "family": "StandardFaldsv7Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "1",
+        "HyperVGenerations": "V2",
+        "MemoryGB": "2",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1als_v7",
+      "family": "StandardFalsv7Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "1",
+        "HyperVGenerations": "V2",
+        "MemoryGB": "2",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1amds_v7",
+      "family": "StandardFamdsv7Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "1",
+        "HyperVGenerations": "V2",
+        "MemoryGB": "8",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1ams_v7",
+      "family": "StandardFamsv7Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "1",
+        "HyperVGenerations": "V2",
+        "MemoryGB": "8",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1as_v7",
+      "family": "StandardFasv7Family",
+      "restrictions": [],
+      "capabilities": {
+        "MaxResourceVolumeMB": "0",
+        "vCPUs": "1",
+        "HyperVGenerations": "V2",
+        "MemoryGB": "4",
+        "PremiumIO": "True"
+      }
+    },
+    {
+      "name": "Standard_F1s",
+      "family": "standardFSFamily",
+      "restrictions": [
+        {
+          "reasonCode": "NotAvailableForSubscription",
+          "restrictionInfo": {
+            "locations": [
+              "northcentralus"
+            ]
+          },
+          "type": "Location",
+          "values": [
+            "northcentralus"
+          ]
+        }
+      ],
+      "capabilities": {
+        "MaxResourceVolumeMB": "4096",
+        "vCPUs": "1",
+        "HyperVGenerations": "V1,V2",
+        "MemoryGB": "2",
+        "PremiumIO": "True"
+      }
+    }
+  ]
+}

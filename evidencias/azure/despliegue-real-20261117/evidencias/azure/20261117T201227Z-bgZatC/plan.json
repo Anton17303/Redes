@@ -1,0 +1,28 @@
+{
+  "subscription": "c9467ad7-558e-42f5-8d3f-a0349dfc2ec8",
+  "resource_group": "RG-CafeNube",
+  "location": "northcentralus",
+  "subnet": "10.0.0.144/28",
+  "private_ip": "10.0.0.148",
+  "dns_label": "cafenube-ventas-publica",
+  "vm_size": "Standard_B2ats_v2",
+  "resources": {
+    "pip": "reuse",
+    "nic": "reuse",
+    "vm": "reuse"
+  },
+  "security": {
+    "configured_nsg": "PASS",
+    "http": 80,
+    "ssh_source": "10.0.0.96/27",
+    "dmz_to_virtualnetwork": "Deny",
+    "tls": "not implemented",
+    "effective_nsg": "PENDING: requiere NIC y VM en ejecución"
+  },
+  "cost_approval": "REQUIRED before --apply",
+  "existing_resources": {
+    "pip": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/publicIPAddresses/PIP-Web-Publica",
+    "nic": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/NIC-Web-Publica",
+    "vm": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Compute/virtualMachines/VM-Web-Publica"
+  }
+}

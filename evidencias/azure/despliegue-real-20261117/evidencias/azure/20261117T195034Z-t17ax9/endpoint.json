@@ -1,0 +1,5 @@
+{
+  "fqdn": "cafenube-ventas-publica.northcentralus.cloudapp.azure.com",
+  "public_ip": "40.116.80.26",
+  "external_source": "CloudShell-standard-outside-VNet"
+}

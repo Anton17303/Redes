@@ -1,0 +1,20 @@
+{
+  "access": "Allow",
+  "destinationAddressPrefix": "10.0.0.128/28",
+  "destinationAddressPrefixes": [],
+  "destinationPortRange": "*",
+  "destinationPortRanges": [],
+  "direction": "Inbound",
+  "etag": "W/\"bf581f05-293e-4ee2-91d7-994cce92e917\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DataCenter/securityRules/Allow-TI",
+  "name": "Allow-TI",
+  "priority": 110,
+  "protocol": "*",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "sourceAddressPrefix": "10.0.0.96/27",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}

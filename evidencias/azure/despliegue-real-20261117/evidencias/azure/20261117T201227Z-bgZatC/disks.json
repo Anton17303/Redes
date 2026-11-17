@@ -1,0 +1,130 @@
+[
+  {
+    "LastOwnershipUpdateTime": "2026-11-17T19:46:46.5713714+00:00",
+    "creationData": {
+      "createOption": "FromImage",
+      "imageReference": {
+        "id": "/Subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/Providers/Microsoft.Compute/Locations/northcentralus/Publishers/Canonical/ArtifactTypes/VMImage/Offers/0001-com-ubuntu-server-jammy/Skus/22_04-lts-gen2/Versions/22.04.202610220"
+      }
+    },
+    "diskIOPSReadWrite": 500,
+    "diskMBpsReadWrite": 60,
+    "diskSizeBytes": 32213303296,
+    "diskSizeGB": 30,
+    "diskState": "Attached",
+    "encryption": {
+      "type": "EncryptionAtRestWithPlatformKey"
+    },
+    "hyperVGeneration": "V2",
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/disks/Disk-Web-Publica-OS",
+    "location": "northcentralus",
+    "managedBy": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Web-Publica",
+    "name": "Disk-Web-Publica-OS",
+    "networkAccessPolicy": "AllowAll",
+    "osType": "Linux",
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": "Enabled",
+    "resourceGroup": "RG-CafeNube",
+    "sku": {
+      "name": "Standard_LRS",
+      "tier": "Standard"
+    },
+    "supportedCapabilities": {
+      "acceleratedNetwork": true,
+      "architecture": "x64",
+      "diskControllerTypes": "SCSI, NVMe"
+    },
+    "supportsHibernation": true,
+    "tags": {
+      "componente": "web-publica",
+      "gestion": "cafenube-v1",
+      "proyecto": "CafeNube"
+    },
+    "timeCreated": "2026-11-17T19:46:46.5612826+00:00",
+    "type": "Microsoft.Compute/disks",
+    "uniqueId": "65105a83-343e-4518-b526-78b92de9fab1"
+  },
+  {
+    "LastOwnershipUpdateTime": "2026-10-23T05:30:50.4978112+00:00",
+    "creationData": {
+      "createOption": "FromImage",
+      "imageReference": {
+        "id": "/Subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/Providers/Microsoft.Compute/Locations/northcentralus/Publishers/canonical/ArtifactTypes/VMImage/Offers/ubuntu-24_04-lts/Skus/server/Versions/24.04.202610160"
+      }
+    },
+    "diskIOPSReadWrite": 500,
+    "diskMBpsReadWrite": 100,
+    "diskSizeBytes": 32213303296,
+    "diskSizeGB": 30,
+    "diskState": "Reserved",
+    "encryption": {
+      "type": "EncryptionAtRestWithPlatformKey"
+    },
+    "hyperVGeneration": "V2",
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/disks/VM-Ventas-1_OsDisk_1_13b88df497fc4cde9ac0247b00167eb3",
+    "location": "northcentralus",
+    "managedBy": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Ventas-1",
+    "name": "VM-Ventas-1_OsDisk_1_13b88df497fc4cde9ac0247b00167eb3",
+    "networkAccessPolicy": "AllowAll",
+    "osType": "Linux",
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": "Enabled",
+    "resourceGroup": "RG-CafeNube",
+    "sku": {
+      "name": "StandardSSD_LRS",
+      "tier": "Standard"
+    },
+    "supportedCapabilities": {
+      "acceleratedNetwork": true,
+      "architecture": "x64",
+      "diskControllerTypes": "SCSI, NVMe"
+    },
+    "supportsHibernation": true,
+    "timeCreated": "2026-10-22T05:05:58.0443518+00:00",
+    "type": "Microsoft.Compute/disks",
+    "uniqueId": "13b88df4-97fc-4cde-9ac0-247b00167eb3"
+  },
+  {
+    "LastOwnershipUpdateTime": "2026-10-23T05:30:50.4972743+00:00",
+    "creationData": {
+      "createOption": "FromImage",
+      "imageReference": {
+        "id": "/Subscriptions/227b511b-f552-4afd-873a-3b607a8f9a91/Providers/Microsoft.Compute/Locations/northcentralus/Publishers/canonical/ArtifactTypes/VMImage/Offers/ubuntu-24_04-lts/Skus/server/Versions/24.04.202610160"
+      }
+    },
+    "diskIOPSReadWrite": 500,
+    "diskMBpsReadWrite": 100,
+    "diskSizeBytes": 32213303296,
+    "diskSizeGB": 30,
+    "diskState": "Reserved",
+    "encryption": {
+      "type": "EncryptionAtRestWithPlatformKey"
+    },
+    "hyperVGeneration": "V2",
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/disks/VM-Ventas-2_disk1_0aa4000d7e444a9ca096b8c118e2ba32",
+    "location": "northcentralus",
+    "managedBy": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Ventas-2",
+    "name": "VM-Ventas-2_disk1_0aa4000d7e444a9ca096b8c118e2ba32",
+    "networkAccessPolicy": "AllowAll",
+    "osType": "Linux",
+    "provisioningState": "Succeeded",
+    "publicNetworkAccess": "Enabled",
+    "resourceGroup": "RG-CafeNube",
+    "securityProfile": {
+      "securityType": "TrustedLaunch"
+    },
+    "sku": {
+      "name": "StandardSSD_LRS",
+      "tier": "Standard"
+    },
+    "supportedCapabilities": {
+      "acceleratedNetwork": true,
+      "architecture": "x64",
+      "diskControllerTypes": "SCSI, NVMe"
+    },
+    "supportsHibernation": true,
+    "timeCreated": "2026-10-22T05:14:33.503935+00:00",
+    "type": "Microsoft.Compute/disks",
+    "uniqueId": "0aa4000d-7e44-4a9c-a096-b8c118e2ba32"
+  }
+]

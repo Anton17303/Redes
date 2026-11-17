@@ -1,0 +1,20 @@
+{
+  "access": "Deny",
+  "destinationAddressPrefix": "10.0.0.0/26",
+  "destinationAddressPrefixes": [],
+  "destinationPortRange": "*",
+  "destinationPortRanges": [],
+  "direction": "Inbound",
+  "etag": "W/\"a74f5597-ad2d-4fd2-afba-239d0fc94d72\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-Visitas/securityRules/Deny-VNet-In",
+  "name": "Deny-VNet-In",
+  "priority": 4000,
+  "protocol": "*",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "sourceAddressPrefix": "VirtualNetwork",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}

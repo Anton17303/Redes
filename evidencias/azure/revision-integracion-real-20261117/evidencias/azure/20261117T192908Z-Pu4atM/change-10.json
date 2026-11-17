@@ -1,0 +1,20 @@
+{
+  "access": "Allow",
+  "destinationAddressPrefix": "10.0.0.132",
+  "destinationAddressPrefixes": [],
+  "destinationPortRange": "53",
+  "destinationPortRanges": [],
+  "direction": "Inbound",
+  "etag": "W/\"4fc9be8b-d3d9-4bad-95ec-9c0ede5cff8c\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DataCenter/securityRules/Allow-Ventas-DNS",
+  "name": "Allow-Ventas-DNS",
+  "priority": 101,
+  "protocol": "*",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "sourceAddressPrefix": "10.0.0.64/27",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}

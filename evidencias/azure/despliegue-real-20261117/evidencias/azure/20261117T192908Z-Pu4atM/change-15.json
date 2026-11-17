@@ -1,0 +1,20 @@
+{
+  "access": "Deny",
+  "destinationAddressPrefix": "VirtualNetwork",
+  "destinationAddressPrefixes": [],
+  "destinationPortRange": "*",
+  "destinationPortRanges": [],
+  "direction": "Outbound",
+  "etag": "W/\"3131b409-5c33-453a-8bdd-3fb25256a5a4\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DMZ/securityRules/Deny-Internas-Out",
+  "name": "Deny-Internas-Out",
+  "priority": 100,
+  "protocol": "*",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "sourceAddressPrefix": "10.0.0.144/28",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}

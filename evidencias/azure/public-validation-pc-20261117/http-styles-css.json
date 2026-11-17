@@ -1,0 +1,19 @@
+{
+  "status": 200,
+  "headers": {
+    "Server": "nginx",
+    "Date": "Tue, 17 Nov 2026 19:51:04 GMT",
+    "Content-Type": "text/css",
+    "Content-Length": "3633",
+    "Last-Modified": "Tue, 17 Nov 2026 19:47:09 GMT",
+    "Connection": "keep-alive",
+    "ETag": "\"6afcaf3d-e31\"",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy": "default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+    "Accept-Ranges": "bytes"
+  },
+  "body_sha256": "c35e1584456ad5b5ee09d053eb2306503ee3f80f697efc5eee1b6235127c1263",
+  "bytes": 3633
+}

@@ -1,0 +1,20 @@
+{
+  "access": "Deny",
+  "destinationAddressPrefix": "VirtualNetwork",
+  "destinationAddressPrefixes": [],
+  "destinationPortRange": "*",
+  "destinationPortRanges": [],
+  "direction": "Outbound",
+  "etag": "W/\"5f07579e-92ce-4c44-ba65-e709cf4f8461\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-Visitas/securityRules/Deny-Visitas-Interno",
+  "name": "Deny-Visitas-Interno",
+  "priority": 100,
+  "protocol": "*",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "sourceAddressPrefix": "10.0.0.0/26",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}

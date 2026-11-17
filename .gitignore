@@ -1,8 +1,6 @@
 /build/
 /config/deployment.env
 /config/credit-review.json
-/evidencias/azure/
-/evidencias/capturas/
 /evidencias/local-render/
 __pycache__/
 *.pyc

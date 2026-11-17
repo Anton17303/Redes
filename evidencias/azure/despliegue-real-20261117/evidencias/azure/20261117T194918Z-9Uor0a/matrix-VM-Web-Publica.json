@@ -1,0 +1,10 @@
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nCAFENUBE_MATRIX_JSON={\"10.0.0.148:80\": \"REFUSED\"}\n\n[stderr]\n"
+    }
+  ]
+}

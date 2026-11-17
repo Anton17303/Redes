@@ -1,0 +1,16 @@
+{
+  "status": 200,
+  "headers": {
+    "Server": "nginx",
+    "Date": "Tue, 17 Nov 2026 20:12:58 GMT",
+    "Content-Type": "text/plain; charset=utf-8",
+    "Content-Length": "12",
+    "Connection": "keep-alive",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy": "default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  },
+  "body_sha256": "2407429abb2e0c414d24cd654d08fb5110618eb26d48150a65e1c7d09edf1107",
+  "bytes": 12
+}

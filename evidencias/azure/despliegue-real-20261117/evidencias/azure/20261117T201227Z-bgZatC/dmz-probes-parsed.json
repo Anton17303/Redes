@@ -1,0 +1,20 @@
+{
+  "dns_udp": {
+    "response": false,
+    "healthy": false,
+    "classification": "HOST_POLICY_DENY",
+    "detail": "[Errno 1] Operation not permitted"
+  },
+  "dns_tcp": {
+    "response": false,
+    "healthy": false,
+    "classification": "TIMEOUT_INCONCLUSIVE",
+    "detail": "timed out"
+  },
+  "intranet_http": {
+    "response": false,
+    "healthy": false,
+    "classification": "TIMEOUT_INCONCLUSIVE",
+    "detail": "timed out"
+  }
+}

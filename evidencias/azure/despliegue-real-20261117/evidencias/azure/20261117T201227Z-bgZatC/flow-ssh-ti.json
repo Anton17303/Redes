@@ -1,0 +1,4 @@
+{
+  "access": "Allow",
+  "ruleName": "securityRules/Allow-TI-Admin"
+}

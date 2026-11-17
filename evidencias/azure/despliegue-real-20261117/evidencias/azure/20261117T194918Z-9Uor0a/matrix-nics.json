@@ -1,0 +1,154 @@
+[
+  {
+    "auxiliaryMode": "None",
+    "auxiliarySku": "None",
+    "disableTcpStateTracking": false,
+    "dnsSettings": {
+      "appliedDnsServers": [],
+      "dnsServers": [
+        "168.63.129.16"
+      ],
+      "internalDomainNameSuffix": "04ot2jf2shfurdvbk5mkeznhbh.ex.internal.cloudapp.net"
+    },
+    "enableIPForwarding": false,
+    "etag": "W/\"00bad6aa-5c81-4dad-b4c4-48e0bedea130\"",
+    "hostedWorkloads": [],
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/NIC-Web-Publica",
+    "ipConfigurations": [
+      {
+        "etag": "W/\"00bad6aa-5c81-4dad-b4c4-48e0bedea130\"",
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/NIC-Web-Publica/ipConfigurations/ipconfig1",
+        "name": "ipconfig1",
+        "primary": true,
+        "privateIPAddress": "10.0.0.148",
+        "privateIPAddressVersion": "IPv4",
+        "privateIPAllocationMethod": "Static",
+        "provisioningState": "Succeeded",
+        "publicIPAddress": {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/publicIPAddresses/PIP-Web-Publica",
+          "resourceGroup": "RG-CafeNube"
+        },
+        "resourceGroup": "RG-CafeNube",
+        "subnet": {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-DMZ",
+          "resourceGroup": "RG-CafeNube"
+        },
+        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+      }
+    ],
+    "location": "northcentralus",
+    "macAddress": "7C-ED-8D-CB-12-F7",
+    "name": "NIC-Web-Publica",
+    "nicType": "Standard",
+    "primary": true,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "RG-CafeNube",
+    "resourceGuid": "06324e64-4ad9-49b0-b5c1-2544785eb124",
+    "tags": {
+      "componente": "web-publica",
+      "gestion": "cafenube-v1",
+      "proyecto": "CafeNube"
+    },
+    "tapConfigurations": [],
+    "type": "Microsoft.Network/networkInterfaces",
+    "virtualMachine": {
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Web-Publica",
+      "resourceGroup": "RG-CafeNube"
+    },
+    "vnetEncryptionSupported": false
+  },
+  {
+    "auxiliaryMode": "None",
+    "auxiliarySku": "None",
+    "disableTcpStateTracking": false,
+    "dnsSettings": {
+      "appliedDnsServers": [],
+      "dnsServers": [],
+      "internalDomainNameSuffix": "04ot2jf2shfurdvbk5mkeznhbh.ex.internal.cloudapp.net"
+    },
+    "enableIPForwarding": false,
+    "etag": "W/\"ae0cb865-7da9-4352-b4a3-9c09b4614374\"",
+    "hostedWorkloads": [],
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/vm-ventas-1840",
+    "ipConfigurations": [
+      {
+        "etag": "W/\"ae0cb865-7da9-4352-b4a3-9c09b4614374\"",
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/vm-ventas-1840/ipConfigurations/ipconfig1",
+        "name": "ipconfig1",
+        "primary": true,
+        "privateIPAddress": "10.0.0.68",
+        "privateIPAddressVersion": "IPv4",
+        "privateIPAllocationMethod": "Dynamic",
+        "provisioningState": "Succeeded",
+        "resourceGroup": "RG-CafeNube",
+        "subnet": {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-Ventas",
+          "resourceGroup": "RG-CafeNube"
+        },
+        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+      }
+    ],
+    "location": "northcentralus",
+    "macAddress": "00-0D-3A-D2-E3-A6",
+    "name": "vm-ventas-1840",
+    "nicType": "Standard",
+    "primary": true,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "RG-CafeNube",
+    "resourceGuid": "1548f4dc-a0fa-4d8a-88e4-04b93bc9fe04",
+    "tapConfigurations": [],
+    "type": "Microsoft.Network/networkInterfaces",
+    "virtualMachine": {
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Ventas-1",
+      "resourceGroup": "RG-CafeNube"
+    },
+    "vnetEncryptionSupported": false
+  },
+  {
+    "auxiliaryMode": "None",
+    "auxiliarySku": "None",
+    "disableTcpStateTracking": false,
+    "dnsSettings": {
+      "appliedDnsServers": [],
+      "dnsServers": [],
+      "internalDomainNameSuffix": "04ot2jf2shfurdvbk5mkeznhbh.ex.internal.cloudapp.net"
+    },
+    "enableIPForwarding": false,
+    "etag": "W/\"aa7e100b-a47c-4183-8c58-ecc14270d345\"",
+    "hostedWorkloads": [],
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/vm-ventas-2883",
+    "ipConfigurations": [
+      {
+        "etag": "W/\"aa7e100b-a47c-4183-8c58-ecc14270d345\"",
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/vm-ventas-2883/ipConfigurations/ipconfig1",
+        "name": "ipconfig1",
+        "primary": true,
+        "privateIPAddress": "10.0.0.69",
+        "privateIPAddressVersion": "IPv4",
+        "privateIPAllocationMethod": "Dynamic",
+        "provisioningState": "Succeeded",
+        "resourceGroup": "RG-CafeNube",
+        "subnet": {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-Ventas",
+          "resourceGroup": "RG-CafeNube"
+        },
+        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+      }
+    ],
+    "location": "northcentralus",
+    "macAddress": "70-A8-A5-9D-DF-C4",
+    "name": "vm-ventas-2883",
+    "nicType": "Standard",
+    "primary": true,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "RG-CafeNube",
+    "resourceGuid": "506b1025-035f-4c81-8ebf-5816853eb89d",
+    "tapConfigurations": [],
+    "type": "Microsoft.Network/networkInterfaces",
+    "virtualMachine": {
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Ventas-2",
+      "resourceGroup": "RG-CafeNube"
+    },
+    "vnetEncryptionSupported": false
+  }
+]

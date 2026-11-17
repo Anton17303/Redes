@@ -1,0 +1,15 @@
+{
+  "environmentName": "AzureCloud",
+  "homeTenantId": "73c3e337-a317-4624-bb03-047663c4d9ed",
+  "id": "c9467ad7-558e-42f5-8d3f-a0349dfc2ec8",
+  "isDefault": true,
+  "managedByTenants": [],
+  "name": "Azure for Students",
+  "state": "Enabled",
+  "tenantId": "73c3e337-a317-4624-bb03-047663c4d9ed",
+  "user": {
+    "cloudShellID": true,
+    "name": "naj231088@uvg.edu.gt",
+    "type": "user"
+  }
+}

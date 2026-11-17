@@ -1,0 +1,20 @@
+{
+  "authorizationSource": "RoleBased",
+  "displayName": "Azure for Students",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8",
+  "managedByTenants": [],
+  "promotions": [
+    {
+      "category": "freetier",
+      "endDateTime": "2027-10-22T03:53:40.9691837Z"
+    }
+  ],
+  "state": "Enabled",
+  "subscriptionId": "c9467ad7-558e-42f5-8d3f-a0349dfc2ec8",
+  "subscriptionPolicies": {
+    "locationPlacementId": "Public_2014-09-01",
+    "quotaId": "AzureForStudents_2018-01-01",
+    "spendingLimit": "On"
+  },
+  "tenantId": "73c3e337-a317-4624-bb03-047663c4d9ed"
+}

@@ -1,0 +1,115 @@
+{
+  "utc": "2026-11-17T19:50:00.299700+00:00",
+  "tests": [
+    {
+      "test": "available-VM-Visitas-1",
+      "result": "PENDING",
+      "detail": "VM ausente/apagada; no se inicia para las pruebas"
+    },
+    {
+      "test": "available-VM-Ventas-1",
+      "result": "PENDING",
+      "detail": "VM ausente/apagada; no se inicia para las pruebas"
+    },
+    {
+      "test": "available-VM-TI-1",
+      "result": "PENDING",
+      "detail": "VM ausente/apagada; no se inicia para las pruebas"
+    },
+    {
+      "test": "available-VM-DNS",
+      "result": "PENDING",
+      "detail": "VM ausente/apagada; no se inicia para las pruebas"
+    },
+    {
+      "test": "available-VM-Intranet",
+      "result": "PENDING",
+      "detail": "VM ausente/apagada; no se inicia para las pruebas"
+    },
+    {
+      "test": "VM-Ventas-1-to-VM-DNS-53",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Ventas-1-to-VM-Intranet-80",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Ventas-1-to-VM-DNS-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Ventas-1-to-VM-TI-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Visitas-1-to-VM-DNS-53",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Visitas-1-to-VM-Intranet-80",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Visitas-1-to-VM-Ventas-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Visitas-1-to-VM-TI-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Visitas-1-to-VM-Web-Publica-80",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-DNS-to-VM-Intranet-80",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-DNS-to-VM-TI-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Web-Publica-to-VM-DNS-53",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Web-Publica-to-VM-Intranet-80",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Web-Publica-to-VM-Ventas-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Web-Publica-to-VM-TI-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "VM-Web-Publica-to-VM-Visitas-1-22",
+      "result": "PENDING",
+      "detail": "Falta VM activa o dirección comprobada"
+    },
+    {
+      "test": "protocol-scope",
+      "result": "PENDING",
+      "detail": "Esta matriz es TCP; completar DNS UDP/funcional y controles externos con 02_pruebas.sh y pruebas de servicios internos"
+    }
+  ]
+}

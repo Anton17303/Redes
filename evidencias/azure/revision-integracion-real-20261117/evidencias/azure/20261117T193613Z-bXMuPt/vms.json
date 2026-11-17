@@ -1,0 +1,166 @@
+[
+  {
+    "additionalCapabilities": {
+      "hibernationEnabled": false
+    },
+    "diagnosticsProfile": {
+      "bootDiagnostics": {
+        "enabled": true
+      }
+    },
+    "etag": "\"9\"",
+    "hardwareProfile": {
+      "vmSize": "Standard_B2ats_v2"
+    },
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Compute/virtualMachines/VM-Ventas-1",
+    "location": "northcentralus",
+    "name": "VM-Ventas-1",
+    "networkProfile": {
+      "networkInterfaces": [
+        {
+          "deleteOption": "Delete",
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/vm-ventas-1840",
+          "resourceGroup": "RG-CafeNube"
+        }
+      ]
+    },
+    "osProfile": {
+      "adminUsername": "azureuser",
+      "allowExtensionOperations": true,
+      "computerName": "VM-Ventas-1",
+      "linuxConfiguration": {
+        "disablePasswordAuthentication": true,
+        "enableVMAgentPlatformUpdates": true,
+        "patchSettings": {
+          "assessmentMode": "ImageDefault",
+          "patchMode": "ImageDefault"
+        },
+        "provisionVMAgent": true,
+        "ssh": {
+          "publicKeys": [
+            {
+              "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAUz0olc0fGRBqE/0/Pnn+sePeoFhAcP2XWHysFD047Cb72VXhR7BpmuUSIHR52Amw5RoE2tHxXHJg55ofsUCWQh/EO5a6B43hZohDlsmuOmmXQ7Si/3furMXwwwQDcaEddosB4VNzyLiaSon1ywxFa4wPb52yMjhFmRWL9A/3kWEu6UyOCFMF/74ALrcgp2uoaW7cc7wf7eX9lKMCQjmTBZBRNmy/jEIBOuFRJ1TXZk0ZD/u7+D/fuRUfCkeaDxHPHj/kr4eySeXfb3h7zituIkdOdW0S6e36wue5M82wtI3MIe+vAdxURyF1y4s9KCgYgbf7JW9BBWJJwHcO5Kb0H++XdjTr9xpGfcDYbyl5qyQls9tjLYMDxZO7JgH8N1z+wnSm2R3jCabSzDvhgXSFH9uO886y3nNBRYAeTeRIwNXmFdTWMJT8CN8t5YVZJf2yf2S4vpwbpRQ9/QZHuP+55YgExC2W/0D95HW4ucC8KpioDoXuJHCBzB4V6s3qLP0= generated-by-azure",
+              "path": "/home/azureuser/.ssh/authorized_keys"
+            }
+          ]
+        }
+      },
+      "requireGuestProvisionSignal": true,
+      "secrets": []
+    },
+    "provisioningState": "Succeeded",
+    "resourceGroup": "RG-CAFENUBE",
+    "securityProfile": {
+      "securityType": "Standard"
+    },
+    "storageProfile": {
+      "dataDisks": [],
+      "diskControllerType": "SCSI",
+      "imageReference": {
+        "exactVersion": "24.04.202610160",
+        "offer": "ubuntu-24_04-lts",
+        "publisher": "canonical",
+        "sku": "server",
+        "version": "latest"
+      },
+      "osDisk": {
+        "caching": "ReadWrite",
+        "createOption": "FromImage",
+        "deleteOption": "Delete",
+        "managedDisk": {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Compute/disks/VM-Ventas-1_OsDisk_1_13b88df497fc4cde9ac0247b00167eb3",
+          "resourceGroup": "RG-CAFENUBE"
+        },
+        "name": "VM-Ventas-1_OsDisk_1_13b88df497fc4cde9ac0247b00167eb3",
+        "osType": "Linux"
+      }
+    },
+    "timeCreated": "2026-10-22T05:05:56.0448702+00:00",
+    "type": "Microsoft.Compute/virtualMachines",
+    "vmId": "2f5d0888-09b9-406a-bdad-6c2edc2cc1e0"
+  },
+  {
+    "additionalCapabilities": {
+      "hibernationEnabled": false
+    },
+    "diagnosticsProfile": {
+      "bootDiagnostics": {
+        "enabled": true
+      }
+    },
+    "etag": "\"9\"",
+    "hardwareProfile": {
+      "vmSize": "Standard_B2ats_v2"
+    },
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Compute/virtualMachines/VM-Ventas-2",
+    "location": "northcentralus",
+    "name": "VM-Ventas-2",
+    "networkProfile": {
+      "networkInterfaces": [
+        {
+          "deleteOption": "Delete",
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/vm-ventas-2883",
+          "resourceGroup": "RG-CafeNube"
+        }
+      ]
+    },
+    "osProfile": {
+      "adminUsername": "azureuser",
+      "allowExtensionOperations": true,
+      "computerName": "VM-Ventas-2",
+      "linuxConfiguration": {
+        "disablePasswordAuthentication": true,
+        "enableVMAgentPlatformUpdates": true,
+        "patchSettings": {
+          "assessmentMode": "ImageDefault",
+          "patchMode": "ImageDefault"
+        },
+        "provisionVMAgent": true,
+        "ssh": {
+          "publicKeys": [
+            {
+              "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAUz0olc0fGRBqE/0/Pnn+sePeoFhAcP2XWHysFD047Cb72VXhR7BpmuUSIHR52Amw5RoE2tHxXHJg55ofsUCWQh/EO5a6B43hZohDlsmuOmmXQ7Si/3furMXwwwQDcaEddosB4VNzyLiaSon1ywxFa4wPb52yMjhFmRWL9A/3kWEu6UyOCFMF/74ALrcgp2uoaW7cc7wf7eX9lKMCQjmTBZBRNmy/jEIBOuFRJ1TXZk0ZD/u7+D/fuRUfCkeaDxHPHj/kr4eySeXfb3h7zituIkdOdW0S6e36wue5M82wtI3MIe+vAdxURyF1y4s9KCgYgbf7JW9BBWJJwHcO5Kb0H++XdjTr9xpGfcDYbyl5qyQls9tjLYMDxZO7JgH8N1z+wnSm2R3jCabSzDvhgXSFH9uO886y3nNBRYAeTeRIwNXmFdTWMJT8CN8t5YVZJf2yf2S4vpwbpRQ9/QZHuP+55YgExC2W/0D95HW4ucC8KpioDoXuJHCBzB4V6s3qLP0= generated-by-azure",
+              "path": "/home/azureuser/.ssh/authorized_keys"
+            }
+          ]
+        }
+      },
+      "requireGuestProvisionSignal": true,
+      "secrets": []
+    },
+    "provisioningState": "Succeeded",
+    "resourceGroup": "RG-CAFENUBE",
+    "securityProfile": {
+      "securityType": "TrustedLaunch",
+      "uefiSettings": {
+        "secureBootEnabled": true,
+        "vTpmEnabled": true
+      }
+    },
+    "storageProfile": {
+      "dataDisks": [],
+      "diskControllerType": "SCSI",
+      "imageReference": {
+        "exactVersion": "24.04.202610160",
+        "offer": "ubuntu-24_04-lts",
+        "publisher": "canonical",
+        "sku": "server",
+        "version": "latest"
+      },
+      "osDisk": {
+        "caching": "ReadWrite",
+        "createOption": "FromImage",
+        "deleteOption": "Delete",
+        "managedDisk": {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Compute/disks/VM-Ventas-2_disk1_0aa4000d7e444a9ca096b8c118e2ba32",
+          "resourceGroup": "RG-CAFENUBE"
+        },
+        "name": "VM-Ventas-2_disk1_0aa4000d7e444a9ca096b8c118e2ba32",
+        "osType": "Linux"
+      }
+    },
+    "timeCreated": "2026-10-22T05:14:32.5086442+00:00",
+    "type": "Microsoft.Compute/virtualMachines",
+    "vmId": "9817a6a0-9943-4acd-97f0-45d7521b88d7"
+  }
+]

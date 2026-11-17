@@ -1,0 +1,12 @@
+[
+  {
+    "etag": "W/\"0e0d44c9-9336-4480-8fae-f96bf1c85da8\"",
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/NetworkWatcherRG/providers/Microsoft.Network/networkWatchers/NetworkWatcher_northcentralus",
+    "location": "northcentralus",
+    "name": "NetworkWatcher_northcentralus",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "NetworkWatcherRG",
+    "runningOperationIds": [],
+    "type": "Microsoft.Network/networkWatchers"
+  }
+]

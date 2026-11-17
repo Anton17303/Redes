@@ -1,0 +1,30 @@
+{
+  "utc": "2026-11-17T19:48:15.814379+00:00",
+  "source": "Local computer using direct HTTP without a proxy; outside project VNet",
+  "fqdn": "cafenube-ventas-publica.northcentralus.cloudapp.azure.com",
+  "azure_returned_ip": "40.116.80.26",
+  "tests": [
+    {
+      "test": "public-dns-from-local-pc",
+      "result": "PASS",
+      "addresses": [
+        "40.116.80.26"
+      ]
+    },
+    {
+      "test": "public-http/",
+      "result": "INCONCLUSIVE",
+      "error": "<urlopen error [WinError 10061] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n>"
+    },
+    {
+      "test": "public-http/styles.css",
+      "result": "INCONCLUSIVE",
+      "error": "<urlopen error [WinError 10061] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n>"
+    },
+    {
+      "test": "public-http/healthz",
+      "result": "INCONCLUSIVE",
+      "error": "<urlopen error [WinError 10061] No se puede establecer una conexi\u00f3n ya que el equipo de destino deneg\u00f3 expresamente dicha conexi\u00f3n>"
+    }
+  ]
+}

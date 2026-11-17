@@ -1,0 +1,13 @@
+{
+  "subscription_id": "c9467ad7-558e-42f5-8d3f-a0349dfc2ec8",
+  "reviewed_at_utc": "2026-11-17T13:57:47.961074+00:00",
+  "expires_on": "2027-10-21",
+  "available_lower_bound_usd": "95.00",
+  "source": "Manual observation of Azure Education Hub in authenticated browser",
+  "displayed_available_credit": "USD 96 de USD 100",
+  "observed_progress_percent": 95.9000015258789,
+  "displayed_days_to_expiration": 339,
+  "displayed_november_cost_usd": "2.62",
+  "spending_limit_verified": false,
+  "budget_approval": "PENDING; review is not spending authorization"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "ddosSettings": {
+      "protectionMode": "VirtualNetworkInherited"
+    },
+    "dnsSettings": {
+      "domainNameLabel": "cafenube-ventas-publica",
+      "fqdn": "cafenube-ventas-publica.northcentralus.cloudapp.azure.com"
+    },
+    "etag": "W/\"e4c8e1c5-9bfe-492c-b09e-c58661687c69\"",
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/publicIPAddresses/PIP-Web-Publica",
+    "idleTimeoutInMinutes": 4,
+    "ipAddress": "40.116.80.26",
+    "ipConfiguration": {
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/NIC-Web-Publica/ipConfigurations/ipconfig1",
+      "resourceGroup": "RG-CafeNube"
+    },
+    "ipTags": [],
+    "location": "northcentralus",
+    "name": "PIP-Web-Publica",
+    "provisioningState": "Succeeded",
+    "publicIPAddressVersion": "IPv4",
+    "publicIPAllocationMethod": "Static",
+    "resourceGroup": "RG-CafeNube",
+    "resourceGuid": "576df9fc-881f-417b-b10c-1ab203161b2e",
+    "sku": {
+      "name": "Standard",
+      "tier": "Regional"
+    },
+    "tags": {
+      "componente": "web-publica",
+      "gestion": "cafenube-v1",
+      "proyecto": "CafeNube"
+    },
+    "type": "Microsoft.Network/publicIPAddresses"
+  }
+]

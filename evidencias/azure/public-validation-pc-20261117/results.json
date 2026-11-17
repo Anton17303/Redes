@@ -1,0 +1,40 @@
+{
+  "utc": "2026-11-17T19:51:13.411527+00:00",
+  "tests": [
+    {
+      "test": "dns-system",
+      "result": "PASS",
+      "detail": "cafenube-ventas-publica.northcentralus.cloudapp.azure.com -> ['40.116.80.26']; esperado 40.116.80.26"
+    },
+    {
+      "test": "dns-public-1.1.1.1",
+      "result": "INCONCLUSIVE",
+      "detail": "[WinError 2] El sistema no puede encontrar el archivo especificado"
+    },
+    {
+      "test": "dns-public-8.8.8.8",
+      "result": "INCONCLUSIVE",
+      "detail": "[WinError 2] El sistema no puede encontrar el archivo especificado"
+    },
+    {
+      "test": "http/",
+      "result": "PASS",
+      "detail": "Esperado HTTP200 y contenido exacto; observado HTTP200, contenido_coincide=True; fuente: Local computer, direct HTTP, outside project VNet"
+    },
+    {
+      "test": "nginx-public-headers",
+      "result": "PASS",
+      "detail": "Esperado Nginx sin versión y cabeceras de seguridad; coincide=True"
+    },
+    {
+      "test": "http/styles.css",
+      "result": "PASS",
+      "detail": "Esperado HTTP200 y contenido exacto; observado HTTP200, contenido_coincide=True; fuente: Local computer, direct HTTP, outside project VNet"
+    },
+    {
+      "test": "http/healthz",
+      "result": "PASS",
+      "detail": "Esperado HTTP200 y contenido exacto; observado HTTP200, contenido_coincide=True; fuente: Local computer, direct HTTP, outside project VNet"
+    }
+  ]
+}

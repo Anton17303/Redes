@@ -1,0 +1,4 @@
+{
+  "access": "Deny",
+  "ruleName": "securityRules/Deny-Internas-Out"
+}

@@ -1,0 +1,134 @@
+{
+  "addressSpace": {
+    "addressPrefixes": [
+      "10.0.0.0/16"
+    ]
+  },
+  "enableDdosProtection": false,
+  "encryption": {
+    "enabled": false,
+    "enforcement": "AllowUnencrypted"
+  },
+  "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube",
+  "location": "northcentralus",
+  "name": "VNet-CafeNube",
+  "privateEndpointVNetPolicies": "Disabled",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "resourceGuid": "243e9dd7-91bc-48cb-8ea1-57d8a265a70f",
+  "subnets": [
+    {
+      "addressPrefixes": [
+        "10.0.0.64/27"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-Ventas",
+      "ipConfigurations": [
+        {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Network/networkInterfaces/VM-VENTAS-1840/ipConfigurations/IPCONFIG1",
+          "resourceGroup": "RG-CAFENUBE"
+        },
+        {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Network/networkInterfaces/VM-VENTAS-2883/ipConfigurations/IPCONFIG1",
+          "resourceGroup": "RG-CAFENUBE"
+        }
+      ],
+      "name": "Subnet-Ventas",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-Ventas",
+        "resourceGroup": "RG-CafeNube"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "RG-CafeNube",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.0.96/27"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-TI",
+      "name": "Subnet-TI",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-TI",
+        "resourceGroup": "RG-CafeNube"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "RG-CafeNube",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.0.128/28"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-DataCenter",
+      "name": "Subnet-DataCenter",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DataCenter",
+        "resourceGroup": "RG-CafeNube"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "RG-CafeNube",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.0.0/26"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-Visitas",
+      "name": "Subnet-Visitas",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-Visitas",
+        "resourceGroup": "RG-CafeNube"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "RG-CafeNube",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefix": "10.0.0.144/28",
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+      "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-DMZ",
+      "ipConfigurations": [
+        {
+          "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CAFENUBE/providers/Microsoft.Network/networkInterfaces/NIC-WEB-PUBLICA/ipConfigurations/IPCONFIG1",
+          "resourceGroup": "RG-CAFENUBE"
+        }
+      ],
+      "name": "Subnet-DMZ",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DMZ",
+        "resourceGroup": "RG-CafeNube"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "RG-CafeNube",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    }
+  ],
+  "tags": {},
+  "type": "Microsoft.Network/virtualNetworks",
+  "virtualNetworkPeerings": []
+}

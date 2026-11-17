@@ -1,0 +1,137 @@
+{
+  "etag": "\"2\"",
+  "hardwareProfile": {
+    "vmSize": "Standard_B2ats_v2"
+  },
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/virtualMachines/VM-Web-Publica",
+  "instanceView": {
+    "capacityReservationType": "NotEligible",
+    "computerName": "VM-Web-Publica",
+    "disks": [
+      {
+        "name": "Disk-Web-Publica-OS",
+        "statuses": [
+          {
+            "code": "ProvisioningState/succeeded",
+            "displayStatus": "Provisioning succeeded",
+            "level": "Info",
+            "time": "2026-11-17T19:46:48.2990329+00:00"
+          }
+        ]
+      }
+    ],
+    "extensions": [],
+    "hyperVGeneration": "V2",
+    "osName": "ubuntu",
+    "osVersion": "22.04",
+    "statuses": [
+      {
+        "code": "ProvisioningState/succeeded",
+        "displayStatus": "Provisioning succeeded",
+        "level": "Info",
+        "time": "2026-11-17T19:49:37.0204634+00:00"
+      },
+      {
+        "code": "PowerState/running",
+        "displayStatus": "VM running",
+        "level": "Info"
+      }
+    ],
+    "vmAgent": {
+      "extensionHandlers": [
+        {
+          "status": {
+            "code": "ProvisioningState/succeeded",
+            "displayStatus": "Ready",
+            "level": "Info",
+            "message": "Plugin enabled"
+          },
+          "type": "Microsoft.CPlat.Core.RunCommandLinux",
+          "typeHandlerVersion": "1.0.12"
+        }
+      ],
+      "statuses": [
+        {
+          "code": "ProvisioningState/succeeded",
+          "displayStatus": "Ready",
+          "level": "Info",
+          "message": "Guest Agent is running",
+          "time": "2026-11-17T19:50:33+00:00"
+        }
+      ],
+      "vmAgentVersion": "2.16.0.2"
+    }
+  },
+  "location": "northcentralus",
+  "name": "VM-Web-Publica",
+  "networkProfile": {
+    "networkInterfaces": [
+      {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkInterfaces/NIC-Web-Publica",
+        "primary": true,
+        "resourceGroup": "RG-CafeNube"
+      }
+    ]
+  },
+  "osProfile": {
+    "adminUsername": "azureuser",
+    "allowExtensionOperations": true,
+    "computerName": "VM-Web-Publica",
+    "linuxConfiguration": {
+      "disablePasswordAuthentication": true,
+      "enableVMAgentPlatformUpdates": true,
+      "patchSettings": {
+        "assessmentMode": "ImageDefault",
+        "patchMode": "ImageDefault"
+      },
+      "provisionVMAgent": true,
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA1BXXPnSW3/JfvAOqGtfFEREAxD4vXuZqGuF0fxecdS cafenube\n",
+            "path": "/home/azureuser/.ssh/authorized_keys"
+          }
+        ]
+      }
+    },
+    "requireGuestProvisionSignal": true,
+    "secrets": []
+  },
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "securityProfile": {
+    "securityType": "Standard"
+  },
+  "storageProfile": {
+    "dataDisks": [],
+    "diskControllerType": "SCSI",
+    "imageReference": {
+      "exactVersion": "22.04.202610220",
+      "offer": "0001-com-ubuntu-server-jammy",
+      "publisher": "Canonical",
+      "sku": "22_04-lts-gen2",
+      "version": "latest"
+    },
+    "osDisk": {
+      "caching": "ReadWrite",
+      "createOption": "FromImage",
+      "deleteOption": "Detach",
+      "diskSizeGB": 30,
+      "managedDisk": {
+        "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Compute/disks/Disk-Web-Publica-OS",
+        "resourceGroup": "RG-CafeNube",
+        "storageAccountType": "Standard_LRS"
+      },
+      "name": "Disk-Web-Publica-OS",
+      "osType": "Linux"
+    }
+  },
+  "tags": {
+    "componente": "web-publica",
+    "gestion": "cafenube-v1",
+    "proyecto": "CafeNube"
+  },
+  "timeCreated": "2026-11-17T19:46:45.3124159+00:00",
+  "type": "Microsoft.Compute/virtualMachines",
+  "vmId": "96c82758-2ce6-4a6f-8504-47f289832ab0"
+}

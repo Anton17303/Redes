@@ -1,0 +1,17 @@
+{
+  "addressPrefix": "10.0.0.144/28",
+  "defaultOutboundAccess": false,
+  "delegations": [],
+  "etag": "W/\"96b3bfdb-3f18-43c9-a67e-36113263be3c\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube/subnets/Subnet-DMZ",
+  "name": "Subnet-DMZ",
+  "networkSecurityGroup": {
+    "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DMZ",
+    "resourceGroup": "RG-CafeNube"
+  },
+  "privateEndpointNetworkPolicies": "Disabled",
+  "privateLinkServiceNetworkPolicies": "Enabled",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "type": "Microsoft.Network/virtualNetworks/subnets"
+}

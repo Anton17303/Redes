@@ -1,0 +1,10 @@
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nCAFENUBE_PROBE_JSON={\"dns_udp\": {\"response\": false, \"healthy\": false, \"classification\": \"HOST_POLICY_DENY\", \"detail\": \"[Errno 1] Operation not permitted\"}, \"dns_tcp\": {\"response\": false, \"healthy\": false, \"classification\": \"TIMEOUT_INCONCLUSIVE\", \"detail\": \"timed out\"}, \"intranet_http\": {\"response\": false, \"healthy\": false, \"classification\": \"TIMEOUT_INCONCLUSIVE\", \"detail\": \"timed out\"}}\n\n[stderr]\n"
+    }
+  ]
+}

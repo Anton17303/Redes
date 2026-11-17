@@ -1,0 +1,22 @@
+{
+  "access": "Allow",
+  "destinationAddressPrefix": "10.0.0.144/28",
+  "destinationAddressPrefixes": [],
+  "destinationPortRanges": [
+    "22",
+    "80"
+  ],
+  "direction": "Inbound",
+  "etag": "W/\"0beb1edc-e209-4046-93e4-df673cec2d19\"",
+  "id": "/subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/networkSecurityGroups/NSG-DMZ/securityRules/Allow-TI-Admin",
+  "name": "Allow-TI-Admin",
+  "priority": 110,
+  "protocol": "Tcp",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "RG-CafeNube",
+  "sourceAddressPrefix": "10.0.0.96/27",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}

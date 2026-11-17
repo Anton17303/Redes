@@ -1,0 +1,25 @@
+{
+  "utc": "2026-11-17T20:14:09.307331+00:00",
+  "source": "Local PC after Azure VM restart; direct external HTTP",
+  "url": "http://cafenube-ventas-publica.northcentralus.cloudapp.azure.com/",
+  "tests": [
+    {
+      "route": "/",
+      "status": 200,
+      "sha256": "864b7f871cb6e271f447e7c8e14b97886ea68b81eec6f2d42bc12a93a04bd2e4",
+      "content_matches": true
+    },
+    {
+      "route": "/styles.css",
+      "status": 200,
+      "sha256": "c35e1584456ad5b5ee09d053eb2306503ee3f80f697efc5eee1b6235127c1263",
+      "content_matches": true
+    },
+    {
+      "route": "/healthz",
+      "status": 200,
+      "sha256": "2407429abb2e0c414d24cd654d08fb5110618eb26d48150a65e1c7d09edf1107",
+      "content_matches": true
+    }
+  ]
+}

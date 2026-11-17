@@ -1,0 +1,34 @@
+Script started on 2026-11-17 13:12:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="109" LINES="36"]
+[?2004hsh-5.2$ az resource list -g RG-CafeNube -o table
+[?2004lName                                                   ResourceGroup    Location        Type                                     Status
+-----------------------------------------------------  ---------------  --------------  ---------------------------------------  ---------
+VNet-CafeNube                                          RG-CafeNube      northcentralus  Microsoft.Network/virtualNetworks        Succeeded
+NSG-Ventas                                             RG-CafeNube      northcentralus  Microsoft.Network/networkSecurityGroups  Succeeded
+NSG-TI                                                 RG-CafeNube      northcentralus  Microsoft.Network/networkSecurityGroups  Succeeded
+NSG-DataCenter                                         RG-CafeNube      northcentralus  Microsoft.Network/networkSecurityGroups  Succeeded
+NSG-Visitas                                            RG-CafeNube      northcentralus  Microsoft.Network/networkSecurityGroups  Succeeded
+CafeNube-Key                                           RG-CafeNube      northcentralus  Microsoft.Compute/sshPublicKeys          Succeeded
+vm-ventas-1840                                         RG-CafeNube      northcentralus  Microsoft.Network/networkInterfaces      Succeeded
+VM-Ventas-1                                            RG-CafeNube      northcentralus  Microsoft.Compute/virtualMachines        Succeeded
+VM-Ventas-1_OsDisk_1_13b88df497fc4cde9ac0247b00167eb3  RG-CAFENUBE      northcentralus  Microsoft.Compute/disks                  Succeeded
+shutdown-computevm-VM-Ventas-1                         RG-CafeNube      northcentralus  Microsoft.DevTestLab/schedules           Succeeded
+vm-ventas-2883                                         RG-CafeNube      northcentralus  Microsoft.Network/networkInterfaces      Succeeded
+VM-Ventas-2                                            RG-CafeNube      northcentralus  Microsoft.Compute/virtualMachines        Succeeded
+VM-Ventas-2_disk1_0aa4000d7e444a9ca096b8c118e2ba32     RG-CAFENUBE      northcentralus  Microsoft.Compute/disks                  Succeeded
+shutdown-computevm-VM-Ventas-2                         RG-CafeNube      northcentralus  Microsoft.DevTestLab/schedules           Succeeded
+VNet-CafeNube-bastion                                  RG-CafeNube      northcentralus  Microsoft.Network/bastionHosts           Succeeded
+[?2004hsh-5.2$ az vm list -d -g RG-CafeNube -o table
+[?2004lName         ResourceGroup    PowerState      PublicIps    Fqdns    Location
+-----------  ---------------  --------------  -----------  -------  --------------
+VM-Ventas-1  RG-CafeNube      VM deallocated                        northcentralus
+VM-Ventas-2  RG-CafeNube      VM deallocated                        northcentralus
+[?2004hsh-5.2$ az resource show -g RG-CafeNube -n VNet-CafeNube-bastion --resource-type Microsoft.Network/bastionHos ts --query sku.name -o tsv
+[?2004lDeveloper
+[?2004hsh-5.2$ az network vnet check-ip-address -g RG-CafeNube -n VNet-CafeNube --ip-address 10.0.0.148 -o json
+[?2004l[38;2;245;93;92m(PrivateIPAddressNotInAnySubnet) Private static IP address 10.0.0.148 does not belong to the range of any subnet in the virtual network /subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube.
+Code: PrivateIPAddressNotInAnySubnet
+Message: Private static IP address 10.0.0.148 does not belong to the range of any subnet in the virtual network /subscriptions/c9467ad7-558e-42f5-8d3f-a0349dfc2ec8/resourceGroups/RG-CafeNube/providers/Microsoft.Network/virtualNetworks/VNet-CafeNube.[0m
+[?2004hsh-5.2$ exit
+[?2004lexit
+
+Script done on 2026-11-17 13:14:08+00:00 [COMMAND_EXIT_CODE="1"]

@@ -1,0 +1,453 @@
+{
+  "operations": [
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-Visitas",
+      "rule": {
+        "name": "Deny-Visitas-Interno",
+        "priority": 100,
+        "direction": "Outbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.0/26"
+        ],
+        "destinationAddressPrefixes": [
+          "VirtualNetwork"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "update"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-Visitas",
+      "rule": {
+        "name": "Deny-VNet-In",
+        "priority": 4000,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "VirtualNetwork"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.0/26"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-Visitas",
+      "rule": {
+        "name": "Allow-TI-In",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.0/26"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-Ventas",
+      "rule": {
+        "name": "Deny-Visitas-Ventas",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.0/26",
+          "10.0.0.144/28"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.64/27"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "update"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-Ventas",
+      "rule": {
+        "name": "Deny-TI-Out",
+        "priority": 100,
+        "direction": "Outbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.64/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-Ventas",
+      "rule": {
+        "name": "Allow-TI-In",
+        "priority": 110,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.64/27"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-TI",
+      "rule": {
+        "name": "Deny-Otras-A-TI",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.0/26",
+          "10.0.0.64/27",
+          "10.0.0.128/28",
+          "10.0.0.144/28"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Deny-TI-Out",
+        "priority": 100,
+        "direction": "Outbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.128/28"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Deny-Resto-VNet",
+        "priority": 200,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "VirtualNetwork"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.128/28"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Allow-Ventas",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.64/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.132"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "53"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Allow-Ventas-DNS",
+        "priority": 101,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.64/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.132"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "53"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Allow-Ventas-Intranet",
+        "priority": 105,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefixes": [
+          "10.0.0.64/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.133"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "80"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Allow-TI",
+        "priority": 110,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.128/28"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DataCenter",
+      "rule": {
+        "name": "Allow-DC-Interno",
+        "priority": 120,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.128/28"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.128/28"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "create-nsg",
+      "name": "NSG-DMZ"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DMZ",
+      "rule": {
+        "name": "Deny-Internas-Out",
+        "priority": 100,
+        "direction": "Outbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "10.0.0.144/28"
+        ],
+        "destinationAddressPrefixes": [
+          "VirtualNetwork"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DMZ",
+      "rule": {
+        "name": "Deny-All-In",
+        "priority": 4000,
+        "direction": "Inbound",
+        "access": "Deny",
+        "protocol": "*",
+        "sourceAddressPrefixes": [
+          "*"
+        ],
+        "destinationAddressPrefixes": [
+          "*"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "*"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DMZ",
+      "rule": {
+        "name": "Allow-Web-Internet",
+        "priority": 100,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefixes": [
+          "Internet"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.144/28"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "80"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "upsert-rule",
+      "nsg": "NSG-DMZ",
+      "rule": {
+        "name": "Allow-TI-Admin",
+        "priority": 110,
+        "direction": "Inbound",
+        "access": "Allow",
+        "protocol": "Tcp",
+        "sourceAddressPrefixes": [
+          "10.0.0.96/27"
+        ],
+        "destinationAddressPrefixes": [
+          "10.0.0.144/28"
+        ],
+        "sourcePortRanges": [
+          "*"
+        ],
+        "destinationPortRanges": [
+          "22",
+          "80"
+        ]
+      },
+      "mode": "create"
+    },
+    {
+      "action": "create-subnet",
+      "name": "Subnet-DMZ",
+      "prefix": "10.0.0.144/28",
+      "nsg": "NSG-DMZ"
+    }
+  ],
+  "billable_resources_created": false,
+  "scope": "Project NSGs and DMZ only; no NAT, VM, IP, disk or provider registration"
+}
