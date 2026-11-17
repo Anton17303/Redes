@@ -1,0 +1,19 @@
+﻿NSG,Prioridad,Direccion,Regla,Origen,Destino,Puerto,Accion,Motivo
+NSG-Visitas,100,Entrada,Allow-TI-In,TI,Visitas,Cualquiera,Permitir,TI llega a todas las subredes
+NSG-Visitas,4000,Entrada,Deny-VNet-In,VirtualNetwork,Visitas,Cualquiera,Denegar,Nadie interno inicia hacia Visitas
+NSG-Visitas,100,Salida,Deny-Internas-Out,Visitas,"Ventas, TI, Data Center, DMZ",Cualquiera,Denegar,Visitas no inicia a subredes internas
+NSG-Visitas,65001,Salida,AllowInternetOutBound (defecto),Cualquiera,Internet,Cualquiera,Permitir,Visitas navega a Internet
+NSG-Ventas,100,Entrada,Allow-TI-In,TI,Ventas,Cualquiera,Permitir,TI llega a Ventas
+NSG-Ventas,110,Entrada,Deny-Visitas-DMZ-In,"Visitas, DMZ",Ventas,Cualquiera,Denegar,Visitas y DMZ no entran a Ventas
+NSG-Ventas,100,Salida,Deny-TI-Out,Ventas,TI,Cualquiera,Denegar,Ventas no inicia hacia TI
+NSG-TI,100,Entrada,Deny-Otras-A-TI,"Visitas, Ventas, Data Center, DMZ",TI,Cualquiera,Denegar,Ninguna otra subred inicia hacia TI
+NSG-DataCenter,101,Entrada,Allow-Ventas-DNS,Ventas,10.0.0.132 (DNS),53 TCP/UDP,Permitir,Empleados consultan el DNS
+NSG-DataCenter,105,Entrada,Allow-Ventas-Intranet,Ventas,10.0.0.133 (Intranet),"80, 443 TCP",Permitir,Empleados abren la Intranet
+NSG-DataCenter,110,Entrada,Allow-TI,TI,Data Center,Cualquiera,Permitir,TI llega a todo (Fase 1)
+NSG-DataCenter,120,Entrada,Allow-DC-Interno,Data Center,Data Center,Cualquiera,Permitir,Intranet consulta al DNS (misma subred)
+NSG-DataCenter,200,Entrada,Deny-Resto-VNet,VirtualNetwork,Data Center,Cualquiera,Denegar,Visitas y DMZ no llegan a los servidores
+NSG-DataCenter,100,Salida,Deny-TI-Out,Data Center,TI,Cualquiera,Denegar,Data Center no inicia hacia TI
+NSG-DMZ,100,Entrada,Allow-Web-Internet,Internet,DMZ,"80, 443 TCP",Permitir,Único acceso público: el sitio web
+NSG-DMZ,110,Entrada,Allow-TI-Admin,TI,DMZ,Cualquiera,Permitir,Administración solo desde TI
+NSG-DMZ,4000,Entrada,Deny-VNet-In,VirtualNetwork,DMZ,Cualquiera,Denegar,"Ventas, Visitas y Data Center no entran a la DMZ"
+NSG-DMZ,100,Salida,Deny-Internas-Out,DMZ,"Visitas, Ventas, TI, Data Center",Cualquiera,Denegar,La DMZ no inicia hacia lo interno
