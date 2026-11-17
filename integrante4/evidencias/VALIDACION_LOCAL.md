@@ -2,7 +2,7 @@
 
 Fecha: **17 de noviembre de 2026**, zona del trabajo: America/Guatemala. Alcance: archivos de `integrante4/`, Bash de Git para Windows, Python3, Nginx oficial para Windows y Chromium de prueba aislado.
 
-**Azure: PENDING.** No se inspeccionó la suscripción ni se desplegaron recursos. Azure CLI no está instalada/autenticada en el entorno y el acceso automatizado al Chrome abierto se detuvo porque no pudo comprobar su URL. No se generaron IPs/FQDN ni se atribuyeron éxitos de red a Azure.
+**Despliegue Azure: PENDING.** Estas pruebas se ejecutaron primero de forma local. Posteriormente se consiguió acceso al portal y a Cloud Shell y se hizo un preflight real, detenido por dependencias ausentes. Ver [REVISION_AZURE_2026-11-17.md](REVISION_AZURE_2026-11-17.md). No se generaron IPs/FQDN ni se atribuyeron éxitos de publicación pública a la validación local.
 
 | Comprobación realmente ejecutada | Resultado |
 |---|---|

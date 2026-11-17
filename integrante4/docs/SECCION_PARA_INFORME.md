@@ -1,6 +1,6 @@
 # Entrega de Nina para Diego
 
-**Estado verificable al 17/11/2026:** archivos implementados y comprobados localmente. El despliegue público en Azure sigue pendiente de inspección de la suscripción, coordinación de seguridad y aprobación del costo. No completar el informe con resultados de Azure hasta ejecutarlos.
+**Estado verificable al 17/11/2026:** archivos implementados y comprobados localmente. Se inspeccionó la suscripción real desde Azure Portal y Cloud Shell: faltan `Subnet-DMZ` y `NSG-DMZ`, por lo que el preflight detuvo el despliegue. La creación del servidor público depende de resolver esas piezas con sus responsables y aprobar el costo. Las pruebas del sitio público siguen pendientes.
 
 ## Texto que ya se puede incorporar
 
@@ -17,6 +17,14 @@ La IP pública prevista es IPv4 Standard estática, asociada exclusivamente a la
 Antes de crear recursos, el preflight comprueba la suscripción, red, asociación del NSG, políticas de entrada/salida, conflictos de IP, propiedad de recursos existentes, disponibilidad del nombre DNS, SKU y cuota de vCPU. La creación necesita una aprobación de presupuesto registrada. Las pruebas preparadas comparan el contenido HTTP real con los archivos entregados, revisan NSGs efectivos y contrastan los intentos desde DMZ con servicios sanos desde TI. Un timeout aislado se registra como inconcluso.
 
 La validación local confirmó la sintaxis Nginx, contenido HTTP, endpoint de salud, cabeceras y comportamiento 404/403. También se comprobó el diseño en anchos de 1440, 390 y 320 píxeles. Estas verificaciones prueban la implementación local y no sustituyen las evidencias del escenario en Azure.
+
+### Verificación real previa al despliegue
+
+La revisión de la suscripción confirmó `VNet-CafeNube (10.0.0.0/16)` en `northcentralus`, con las cuatro subredes originales y sus NSGs. No existe todavía la DMZ propuesta. El preflight registró `ResourceNotFound` al consultar `NSG-DMZ`; la consulta de `10.0.0.148` devolvió `PrivateIPAddressNotInAnySubnet`. Este último resultado no demuestra una IP disponible: falta incorporar su subred y volver a comprobarla.
+
+Las únicas VMs del grupo son `VM-Ventas-1` y `VM-Ventas-2`, ambas desasignadas y sin IP pública. No aparecen `VM-Web-Publica`, `NIC-Web-Publica`, `PIP-Web-Publica`, `VM-DNS` ni `VM-Intranet` en el inventario del grupo. También existe `VNet-CafeNube-bastion`, cuyo SKU consultado es `Developer`; el diagrama final debe reflejar el estado real. No se modificó ese recurso.
+
+El inventario y los fallos se conservaron en registros reales de Cloud Shell. [REVISION_AZURE_2026-11-17.md](../evidencias/REVISION_AZURE_2026-11-17.md) resume los comandos y conclusiones. La comprobación previa sigue detenida; no hubo despliegue ni pruebas exitosas de publicación pública.
 
 ## Datos por completar únicamente después del despliegue
 

@@ -2,6 +2,8 @@
 
 Esta es la política requerida por la implementación de Nina. Se documenta para que los responsables de red y seguridad la integren; estos archivos **no cambian** sus recursos.
 
+**Comprobación real del 17/11/2026:** faltan `Subnet-DMZ` y `NSG-DMZ`. El preflight se detuvo al consultar el NSG. No se han comprobado reglas efectivas de la DMZ porque todavía no existe su NIC/VM. Ver [la evidencia real](../evidencias/REVISION_AZURE_2026-11-17.md).
+
 ## Perfil que acepta el preflight
 
 | Prioridad sugerida | Dirección | Origen | Destino | Protocolo / puerto | Acción |

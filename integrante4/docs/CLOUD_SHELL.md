@@ -1,5 +1,7 @@
 # Procedimiento reproducible en Azure Cloud Shell (Bash)
 
+**Ejecución real del 17/11/2026:** este procedimiento ya permitió inspeccionar la suscripción. El preflight se detuvo porque no existe `NSG-DMZ`; tampoco está creada la subred DMZ. Repetir la comprobación después de resolver esas dependencias. No omitirla ni ejecutar `--apply` para intentar compensarlas. Ver [la revisión real](../evidencias/REVISION_AZURE_2026-11-17.md).
+
 ## 1. Obtener la rama y elegir la suscripción
 
 Entrar a Azure Portal → Cloud Shell → **Bash** con la cuenta del equipo. Preferir una sesión efímera sin almacenamiento si está disponible; no crear almacenamiento ni otros recursos cobrables sin presupuesto aprobado. Si Cloud Shell solicita autenticación, completarla personalmente.
@@ -102,7 +104,13 @@ Abrir `http://FQDN_REAL/` desde fuera de la VNet. Usar HTTP explícitamente; no 
 
 ## 5. Conservar evidencias y desasignar
 
-Revisar `RESULTADOS.md`, los JSON originales y las capturas. Adjuntar al informe solo resultados ejecutados. Descargar las evidencias antes de cerrar una sesión efímera; los logs no se sincronizan solos con GitHub.
+Revisar `RESULTADOS.md`, los JSON originales y las capturas. Adjuntar al informe solo resultados ejecutados. Descargar las evidencias antes de cerrar una sesión efímera; los logs no se sincronizan solos con GitHub. Se puede empaquetar la carpeta desde `integrante4/`:
+
+```bash
+tar -czf cafenube-evidencias.tar.gz -C evidencias azure
+```
+
+En **Administrar archivos → Descargar**, revisar si el formulario ya muestra el prefijo del directorio de inicio: no duplicarlo en la parte editable. Después de preparar la descarga, hacer clic en el enlace del archivo que aparece en Cloud Shell; completar el formulario por sí solo no lo guarda en la computadora.
 
 ```bash
 bash scripts/03_apagar.sh

@@ -2,7 +2,7 @@
 
 Página pública de Ventas, Nginx HTTP, cloud-init y automatización de publicación en la DMZ. Trabajo preparado en `ProyectoFinal-FASE2`, usando el HTML y la propuesta de scripts del ZIP como punto de partida.
 
-**Estado al 17 de noviembre de 2026:** implementación y validación local completadas. Azure no fue inspeccionado ni desplegado: no hay Azure CLI autenticada en este equipo y el control del Chrome abierto se detuvo al no poder verificar su URL. No hay IP pública, FQDN ni evidencia de conectividad de Azure confirmados. No se crearon recursos cobrables.
+**Estado al 17 de noviembre de 2026:** implementación local completada y suscripción inspeccionada mediante Azure Portal y Cloud Shell. El preflight real se detuvo porque falta `NSG-DMZ`; la VNet tampoco contiene `Subnet-DMZ`. No se desplegó la VM pública ni se asignaron IP pública/FQDN. No se crearon recursos cobrables. Ver [la revisión real de Azure](evidencias/REVISION_AZURE_2026-11-17.md).
 
 ## Archivos
 

@@ -2,6 +2,8 @@
 
 `VALIDACION_LOCAL.md` registra comprobaciones realmente ejecutadas en este equipo. Las capturas de `local-render/` muestran una instancia de prueba en loopback y **no** demuestran acceso público desde Azure.
 
+[REVISION_AZURE_2026-11-17.md](REVISION_AZURE_2026-11-17.md) registra la inspección real posterior: preflight detenido por ausencia de NSG-DMZ y Subnet-DMZ. Los logs originales descargados se conservan en `azure/revision-real-20261117/` y en `azure/cafenube-preflight.tar.gz`, ignorados por Git. Los resultados del servicio público continúan pendientes.
+
 Al ejecutar los scripts conectados a Azure, los inventarios, resultados y aprobaciones se guardan en `azure/<fecha-UTC>-<identificador>/`. Las capturas manuales pueden guardarse en `capturas/`. Ambas carpetas se ignoran en Git: revisar datos y elegir qué adjuntar al reporte, sin credenciales. Los fixtures offline se mantienen en temporales de prueba, separados de las evidencias reales.
 
 ## Estado de aceptación del escenario Azure
