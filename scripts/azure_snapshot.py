@@ -27,11 +27,11 @@ def request(*args, timeout=600):
     return json.loads(result.stdout)
 
 
-def resource_skus(subscription, size):
+def resource_skus(subscription, size, location=LOC):
     # The CLI's legacy list-skus endpoint can stall. Use the documented regional
     # ARM API with pagination; keep restrictions/family/vCPU data for validation.
     uri = f"/subscriptions/{subscription}/providers/Microsoft.Compute/skus?" + urlencode({
-        "api-version": "2021-07-01", "$filter": f"location eq '{LOC}'"})
+        "api-version": "2021-07-01", "$filter": f"location eq '{location}'"})
     seen, result = set(), []
     while uri:
         if uri in seen or len(seen) >= 100:
