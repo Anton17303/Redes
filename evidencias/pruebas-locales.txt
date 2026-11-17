@@ -15,6 +15,13 @@ test_rejects_network_and_resource_conflicts (test_safety.SafetyTests.test_reject
 test_rejects_unsafe_security_profiles (test_safety.SafetyTests.test_rejects_unsafe_security_profiles) ... ok
 test_run_command_success_without_guest_marker_is_inconclusive (test_safety.SafetyTests.test_run_command_success_without_guest_marker_is_inconclusive) ... ok
 test_valid_rerun_reuses_all_resources_and_occupied_own_ip (test_safety.SafetyTests.test_valid_rerun_reuses_all_resources_and_occupied_own_ip) ... ok
+test_complete_policy_converges_and_supports_singular_azure_fields (test_security_policy.SecurityPolicyTests.test_complete_policy_converges_and_supports_singular_azure_fields) ... ok
+test_conflicts_unknown_rules_routes_and_shared_nsg_are_rejected (test_security_policy.SecurityPolicyTests.test_conflicts_unknown_rules_routes_and_shared_nsg_are_rejected) ... ok
+test_existing_network_creates_only_missing_dmz_and_nsg (test_security_policy.SecurityPolicyTests.test_existing_network_creates_only_missing_dmz_and_nsg) ... ok
+test_legacy_sales_rule_narrowed_in_place_and_no_tls_opening (test_security_policy.SecurityPolicyTests.test_legacy_sales_rule_narrowed_in_place_and_no_tls_opening) ... ok
+test_observed_phase_one_rules_are_updated_without_priority_collisions (test_security_policy.SecurityPolicyTests.test_observed_phase_one_rules_are_updated_without_priority_collisions) ... ok
+test_shared_hardening_preserves_dmz_egress_and_has_no_reset_or_public_ssh (test_security_policy.SecurityPolicyTests.test_shared_hardening_preserves_dmz_egress_and_has_no_reset_or_public_ssh) ... ok
+test_timeouts_never_prove_isolation_without_healthy_control_and_effective_deny (test_security_policy.SecurityPolicyTests.test_timeouts_never_prove_isolation_without_healthy_control_and_effective_deny) ... ok
 test_apply_then_rerun_does_not_duplicate_resources (test_shell_flow.ShellFlowTests.test_apply_then_rerun_does_not_duplicate_resources) ... ok
 test_apply_without_budget_stops_before_azure (test_shell_flow.ShellFlowTests.test_apply_without_budget_stops_before_azure) ... ok
 test_default_plan_performs_no_mutations (test_shell_flow.ShellFlowTests.test_default_plan_performs_no_mutations) ... ok
@@ -26,6 +33,6 @@ test_shutdown_only_targets_owned_vm (test_shell_flow.ShellFlowTests.test_shutdow
 test_unsafe_nsg_prevents_all_billable_mutations (test_shell_flow.ShellFlowTests.test_unsafe_nsg_prevents_all_billable_mutations) ... ok
 
 ----------------------------------------------------------------------
-Ran 26 tests in 25.926s
+Ran 33 tests in 28.820s
 
 OK

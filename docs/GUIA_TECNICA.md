@@ -1,6 +1,6 @@
 # Qué explicar y demostrar
 
-1. **Tu aporte:** implementaste el sitio estático de Ventas, Nginx, inicialización Ubuntu, automatización y pruebas. La red, las reglas compartidas y el DNS privado se coordinan con sus dueños. Distinguir preparación local de despliegue real.
+1. **Componentes:** el proyecto implementa el sitio estático de Ventas, Nginx, inicialización Ubuntu, automatización y pruebas. La red, las reglas compartidas y el DNS privado se coordinan con sus dueños. Distinguir preparación local de despliegue real.
 2. **DMZ:** aloja el servidor accesible desde Internet en un segmento separado de DNS/Intranet. Tener otra subred no basta: los NSGs de Azure permiten tráfico interno por defecto y hay que anularlo con reglas propias.
 3. **Subneteo:** `/28` tiene 16 direcciones. Azure reserva 5; quedan 11 asignables, `.148` a `.158` dentro de `10.0.0.144/28`. No traslapa Data Center `.128/28`, que termina en `.143`.
 4. **Ruta de una solicitud:** el cliente resuelve el FQDN público a la PIP; Azure entrega el tráfico a la IP privada de la NIC; el NSG decide; Nginx atiende TCP 80 y sirve HTML/CSS. El nombre público no depende del BIND interno.
@@ -11,7 +11,7 @@
 9. **Salida:** descargar paquetes requiere DNS y salida TCP 80/443. La PIP propia permite salida explícita; no se depende de la salida predeterminada de una subred privada. La NIC usa `168.63.129.16`, mientras que las redes RFC1918 se bloquean desde el guest y `VirtualNetwork` desde el NSG.
 10. **Pruebas fiables:** un timeout puede significar bloqueo, ruta rota o servidor apagado. Primero demostrar que DNS/Intranet están sanos desde TI y después comprobar intentos desde DMZ y la regla Deny efectiva. Una respuesta `REFUSED` de BIND prueba que hubo conectividad, aunque la consulta no se autorizó.
 11. **Idempotencia y propiedad:** se reutilizan únicamente recursos propios que coinciden con el diseño. Un recurso con otro propietario o una IP ocupada detiene la creación. Un fallo de permisos no se interpreta como ausencia. Reejecutar no actualiza cloud-init de una VM ya creada.
-12. **Costos:** plan no crea recursos; aplicar exige presupuesto aprobado. El monto registrado no es un límite automático. Desasignar detiene el cómputo, pero quedan disco e IP. Nunca ejecutar una eliminación global del grupo para apagar tu parte.
+12. **Costos:** plan no crea recursos; aplicar exige presupuesto aprobado. El monto registrado no es un límite automático. Desasignar detiene el cómputo, pero quedan disco e IP. Nunca ejecutar una eliminación global del grupo para detener el servicio público.
 
 ## Demostración práctica
 
@@ -20,4 +20,4 @@
 - Ejecutar el preflight y explicar el motivo exacto si se detiene.
 - Si ya está desplegado: mostrar FQDN real, resolución y sitio desde Internet, estado Nginx, reglas efectivas y controles positivos/negativos.
 - Explicar cada `FAIL`, `PENDING` o `INCONCLUSIVE` sin convertirlo en una prueba aprobada.
-- Cerrar con la desasignación de tu VM y comprobar su estado.
+- Cerrar con la desasignación de la VM pública y comprobar su estado.

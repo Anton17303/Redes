@@ -28,7 +28,7 @@ El listado completo de Azure CLI contiene 15 recursos, incluidas dos programacio
 
 ## Comandos ejecutados
 
-Después de clonar `ProyectoFinal-FASE2` y establecer explícitamente el ID real de la suscripción en la sesión, se ejecutó desde `integrante4/`:
+Después de clonar `ProyectoFinal-FASE2` y establecer explícitamente el ID real de la suscripción en la sesión, se ejecutó desde `./`:
 
 ```bash
 bash scripts/00_preflight.sh evidencias/azure/revision-real-20261117
@@ -67,11 +67,11 @@ Los originales se ignoran por Git porque contienen identificadores completos de 
 
 ## Qué falta para continuar
 
-1. Coordinar con José Ordóñez la incorporación de `Subnet-DMZ=10.0.0.144/28` y con José Antón la creación/asociación de `NSG-DMZ` con su política segura. No se realizaron esas tareas de otros responsables.
+1. Coordinar con el área de redes la incorporación de `Subnet-DMZ=10.0.0.144/28` y con el área de seguridad la creación/asociación de `NSG-DMZ` con su política segura. No se realizaron esas tareas de otros responsables.
 2. Repetir el preflight completo. La revisión se detuvo antes de comprobar SKU/cuota, propiedad de recursos propios, disponibilidad del nombre DNS y conflictos de IP en una DMZ ya existente.
 3. Aprobar configuración, horas y presupuesto antes de ejecutar `01_desplegar_web.sh --apply`.
 4. Desplegar y verificar Nginx/cloud-init/UFW/SSH, DNS público, HTTP externo y aislamiento con controles positivos internos sanos.
-5. Integrar DNS/Intranet con Adrián y las evidencias del equipo con Diego. El reporte debe reflejar el Bastion existente y las dependencias aún ausentes.
+5. Integrar DNS/Intranet y consolidar las evidencias en el informe final. El reporte debe reflejar el Bastion existente y las dependencias aún ausentes.
 
 No se iniciaron ni desasignaron las VMs ajenas, no se registraron proveedores de recursos ni se cambiaron redes, reglas, etiquetas o recursos existentes. No se creó PIP, NIC, disco ni VM durante esta revisión.
 
