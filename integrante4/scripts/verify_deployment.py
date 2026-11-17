@@ -117,13 +117,16 @@ def public_tests(evidence, pip, external):
                 state = "INCONCLUSIVE"
             evidence.save("http-" + (route.strip("/") or "index").replace(".", "-"),
                           {"status": response.status, "headers": headers, "body_sha256": hashlib.sha256(body).hexdigest(), "bytes": len(body)})
-            evidence.result("http" + route, state, "HTTP200 y SHA256 exacto del contenido; fuente: " + (external or "sin confirmar"))
+            evidence.result("http" + route, state,
+                            f"Esperado HTTP200 y contenido exacto; observado HTTP{response.status}, "
+                            f"contenido_coincide={body == expected}; fuente: {external or 'sin confirmar'}")
             if route == "/":
                 safe_headers = (response.getheader("Server", "").lower() == "nginx" and
                                 response.getheader("X-Content-Type-Options") == "nosniff" and
                                 response.getheader("X-Frame-Options") == "DENY" and
                                 bool(response.getheader("Content-Security-Policy")))
-                evidence.result("nginx-public-headers", "PASS" if safe_headers else "FAIL", "Nginx sin versión y cabeceras de seguridad")
+                evidence.result("nginx-public-headers", "PASS" if safe_headers else "FAIL",
+                                f"Esperado Nginx sin versión y cabeceras de seguridad; coincide={safe_headers}")
         except (OSError, http.client.HTTPException) as error:
             evidence.result("http" + route, "INCONCLUSIVE", f"{error}; no equivale a bloqueo NSG")
         finally:

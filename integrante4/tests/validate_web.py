@@ -46,7 +46,10 @@ def main():
         server = server.replace("root /var/www/cafenube;", f'root "{(ROOT / "web").as_posix()}";')
         config = (f'pid "{(folder / "nginx.pid").as_posix()}";\n'
                   f'error_log "{(folder / "error.log").as_posix()}";\nevents {{}}\n'
-                  f'http {{ include "{mime_types.as_posix()}"; access_log off;\n{server}\n}}\n')
+                  f'http {{ include "{mime_types.as_posix()}"; access_log off;\n'
+                  + "".join(f'{directive}_temp_path "{(folder / directive).as_posix()}";\n'
+                            for directive in ("client_body", "proxy", "fastcgi", "uwsgi", "scgi"))
+                  + server + "\n}\n")
         (folder / "nginx.conf").write_text(config, encoding="utf-8", newline="\n")
         command = [str(executable), "-p", folder.as_posix() + "/", "-c", "nginx.conf"]
         syntax = subprocess.run(command + ["-t"], capture_output=True, text=True)
